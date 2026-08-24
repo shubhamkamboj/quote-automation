@@ -15,6 +15,13 @@ FONT_FILE = ROOT / "fonts" / "NotoSansDevanagari-Regular.ttf"
 WIDTH, HEIGHT = 1080, 1800
 RNG = random.SystemRandom()
 
+# Quote area inside the diary page.
+# This keeps the quote centered in the usable page area rather than at the bottom.
+PAGE_TOP = 250
+PAGE_BOTTOM = 1450
+PAGE_LEFT = 120
+PAGE_RIGHT = 960
+
 
 def load_json(path, default):
     if not path.exists():
@@ -40,10 +47,12 @@ def pick_quote_and_template():
         raise RuntimeError("No templates found in templates/.")
 
     state = load_json(STATE_FILE, {"last_template": None})
+
     candidates = [
         p for p in templates
         if p.name != state.get("last_template")
     ] or templates
+
     template = RNG.choice(candidates)
 
     new_state = {
@@ -71,6 +80,7 @@ def wrap_text(draw, text, font, max_width):
     for word in words:
         candidate = word if not current else current + " " + word
         bbox = draw.textbbox((0, 0), candidate, font=font)
+
         if bbox[2] - bbox[0] <= max_width:
             current = candidate
         else:
@@ -85,20 +95,22 @@ def wrap_text(draw, text, font, max_width):
 
 
 def fit_quote(draw, quote, max_width, max_height):
-    for size in range(58, 28, -2):
+    for size in range(62, 27, -2):
         font = get_font(size)
         wrapped = wrap_text(draw, quote, font, max_width)
+
         bbox = draw.multiline_textbbox(
             (0, 0),
             wrapped,
             font=font,
-            spacing=16,
+            spacing=18,
             align="center",
         )
-        if (
-            bbox[2] - bbox[0] <= max_width
-            and bbox[3] - bbox[1] <= max_height
-        ):
+
+        text_width = bbox[2] - bbox[0]
+        text_height = bbox[3] - bbox[1]
+
+        if text_width <= max_width and text_height <= max_height:
             return wrapped, font
 
     font = get_font(28)
@@ -106,56 +118,90 @@ def fit_quote(draw, quote, max_width, max_height):
 
 
 def render(quote, template_path):
-    image = Image.open(template_path).convert("RGB").resize(
-        (WIDTH, HEIGHT),
-        Image.Resampling.LANCZOS,
-    )
-    draw = ImageDraw.Draw(image, "RGBA")
-
-    # Cover the sample quote area in the supplied diary templates.
-    left, top, right, bottom = 115, 1390, 965, 1685
-    draw.rounded_rectangle(
-        (left, top, right, bottom),
-        radius=28,
-        fill=(246, 238, 222, 228),
-        outline=(128, 101, 73, 80),
-        width=2,
+    image = (
+        Image.open(template_path)
+        .convert("RGB")
+        .resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
     )
 
-    draw.text(
-        (540, 1435),
-        "❝",
-        font=get_font(38),
-        anchor="mm",
-        fill=(103, 78, 55, 150),
+    draw = ImageDraw.Draw(image)
+
+    # Remove the old bottom quote-card behavior entirely.
+    # The selected templates are already blank, so the quote is drawn directly
+    # onto the diary page.
+
+    max_width = PAGE_RIGHT - PAGE_LEFT
+    max_height = PAGE_BOTTOM - PAGE_TOP
+
+    wrapped, font = fit_quote(
+        draw,
+        quote,
+        max_width=max_width,
+        max_height=max_height,
     )
 
-    max_w = right - left - 90
-    max_h = bottom - top - 105
-    wrapped, font = fit_quote(draw, quote, max_w, max_h)
+    # True visual center of the usable diary page.
+    center_x = (PAGE_LEFT + PAGE_RIGHT) // 2
+    center_y = (PAGE_TOP + PAGE_BOTTOM) // 2
+
+    bbox = draw.multiline_textbbox(
+        (0, 0),
+        wrapped,
+        font=font,
+        spacing=18,
+        align="center",
+    )
+
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+
+    # Very subtle quote color; no large background box.
+    text_color = (72, 55, 42)
 
     draw.multiline_text(
-        (540, 1540),
+        (center_x, center_y),
         wrapped,
         font=font,
         anchor="mm",
         align="center",
-        spacing=16,
-        fill=(72, 55, 42, 255),
+        spacing=18,
+        fill=text_color,
     )
 
-    draw.line(
-        (350, 1650, 730, 1650),
-        fill=(128, 101, 73, 150),
-        width=2,
-    )
-    draw.text(
-        (540, 1665),
-        "♡",
-        font=get_font(26),
-        anchor="mm",
-        fill=(103, 78, 55, 190),
-    )
+    # Small ornamental divider below the quote.
+    divider_y = center_y + (text_height // 2) + 50
+    divider_width = 160
+
+    if divider_y < PAGE_BOTTOM - 40:
+        draw.line(
+            (
+                center_x - divider_width,
+                divider_y,
+                center_x - 25,
+                divider_y,
+            ),
+            fill=(150, 116, 79),
+            width=2,
+        )
+
+        draw.text(
+            (center_x, divider_y),
+            "♥",
+            font=get_font(24),
+            anchor="mm",
+            fill=(150, 116, 79),
+        )
+
+        draw.line(
+            (
+                center_x + 25,
+                divider_y,
+                center_x + divider_width,
+                divider_y,
+            ),
+            fill=(150, 116, 79),
+            width=2,
+        )
 
     return image
 
@@ -166,12 +212,12 @@ def main():
 
     now = datetime.now(timezone.utc)
     filename = f"quote-{now.strftime('%Y%m%d-%H%M%S-%f')}.jpg"
-    output = OUTPUT_DIR / filename
-    latest = OUTPUT_DIR / "latest.jpg"
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # JPEG is required by Instagram's image publishing endpoint.
+    output = OUTPUT_DIR / filename
+    latest = OUTPUT_DIR / "latest.jpg"
+
     image.save(
         output,
         format="JPEG",
@@ -179,8 +225,7 @@ def main():
         optimize=True,
         progressive=False,
     )
-    # Keep a stable copy for local inspection; publishing uses the unique file
-    # URL so two posts in one workflow cannot receive a cached previous image.
+
     image.save(
         latest,
         format="JPEG",
