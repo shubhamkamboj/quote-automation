@@ -47,8 +47,21 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Verify required tools
+        run: |
+          python --version
+          ffmpeg -version
+          test -f app/create_reel.py
+          test -f app/publish_reel.py
 
       - name: Publish 4 photo + reel posts
         shell: bash
@@ -66,8 +79,8 @@ jobs:
               export FORCE_GEMINI=true
             fi
 
-            # Prepare one post. The first call creates the complete 4-post
-            # batch in data/pending_posts.json, so Gemini is called once/run.
+            # Generates one item from the prepared 4-post batch.
+            # Gemini is used once per run; fallback_quotes.txt is used if Gemini fails.
             python app/generate.py
 
             FILE=$(python - <<'PY'
@@ -89,7 +102,10 @@ jobs:
               data/state.json \
               data/pending_posts.json
 
-            git commit -m "chore: generate post ${POST_NUMBER}/4"
+            # Avoid failing when there is nothing new to commit.
+            git diff --cached --quiet || \
+              git commit -m "chore: generate post ${POST_NUMBER}/4"
+
             git push
 
             SHA=$(git rev-parse HEAD)
@@ -146,14 +162,17 @@ jobs:
             echo "Publishing photo..."
             python app/publish_instagram.py
 
-            # Create Reel from the same photo.
             echo "Creating reel..."
             python app/create_reel.py
 
             REEL_FILE=$(python - <<'PY'
           import json
           with open("generated/latest.json", encoding="utf-8") as f:
-              print(json.load(f)["reel_filename"])
+              data = json.load(f)
+              reel = data.get("reel_filename")
+              if not reel:
+                  raise SystemExit("reel_filename missing from latest.json")
+              print(reel)
           PY
             )
 
@@ -163,7 +182,9 @@ jobs:
               "generated/$REEL_FILE" \
               generated/latest.json
 
-            git commit -m "chore: generate reel ${POST_NUMBER}/4"
+            git diff --cached --quiet || \
+              git commit -m "chore: generate reel ${POST_NUMBER}/4"
+
             git push
 
             REEL_SHA=$(git rev-parse HEAD)
@@ -222,7 +243,7 @@ jobs:
             echo "Publishing reel..."
             python app/publish_reel.py
 
-            # Consume priority/fallback ONLY after BOTH photo and reel succeed.
+            # Consume priority/fallback only after BOTH photo and reel succeed.
             SOURCE=$(python - <<'PY'
           import json
           with open("generated/latest.json", encoding="utf-8") as f:
@@ -231,7 +252,9 @@ jobs:
             )
 
             if [ "$SOURCE" = "priority" ]; then
-              python app/consume_priority.py
+              if [ -f app/consume_priority.py ]; then
+                python app/consume_priority.py || true
+              fi
 
               if ! git diff --quiet -- priority.txt; then
                 git add priority.txt
