@@ -2,8 +2,8 @@ name: Daily Hindi Quote
 
 on:
   schedule:
-    # 19:30 IST = 14:00 UTC. Change this if you want another posting time.
-    - cron: '0 14 * * *'
+    # 19:30 IST = 14:00 UTC
+    - cron: "0 14 * * *"
   workflow_dispatch:
 
 permissions:
@@ -12,14 +12,22 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     env:
-      IG_USER_ID: ${{ secrets.IG_USER_ID }}
-      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-      META_API_VERSION: ${{ secrets.META_API_VERSION }}
-      HASHTAGS: ${{ secrets.HASHTAGS }}
-      AUTO_HASHTAGS: ${{ secrets.AUTO_HASHTAGS || 'true' }}
+      # Existing GitHub repository secrets — keep these exact names.
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+      INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+
+      # Existing repository variable for Gemini model.
       GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+
+      # Optional repository variable. If absent, publish_instagram.py uses v25.0.
+      META_API_VERSION: ${{ vars.META_API_VERSION }}
+
+      HASHTAGS: ${{ vars.HASHTAGS }}
+      AUTO_HASHTAGS: ${{ vars.AUTO_HASHTAGS }}
+
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
       SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
@@ -36,7 +44,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -54,7 +62,7 @@ jobs:
           echo "has_priority=$HAS_PRIORITY" >> "$GITHUB_OUTPUT"
           echo "Priority available: $HAS_PRIORITY"
 
-      - name: Generate first image (priority or Gemini)
+      - name: Generate first image
         run: python app/generate.py
 
       - name: Commit first generated image and state
@@ -62,7 +70,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/ data/state.json
-          git commit -m "chore: publish first daily quote"
+          git commit -m "chore: generate daily quote"
           git push
 
       - name: Build first public image URL
@@ -70,10 +78,10 @@ jobs:
         shell: bash
         run: |
           FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
-          COMMIT_SHA=$(git rev-parse HEAD)
-          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${COMMIT_SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
+          SHA=$(git rev-parse HEAD)
+          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
 
-      - name: Publish first post to Instagram
+      - name: Publish first Instagram post
         env:
           IMAGE_URL: ${{ steps.image1.outputs.url }}
         run: python app/publish_instagram.py
@@ -82,7 +90,7 @@ jobs:
         if: steps.priority.outputs.has_priority == 'true'
         run: |
           if git diff --quiet -- priority.txt; then
-            echo "Priority was detected but no priority change was produced."
+            echo "No priority.txt change detected."
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -91,7 +99,7 @@ jobs:
             git push
           fi
 
-      - name: Generate second image from Gemini
+      - name: Generate second Gemini image
         if: steps.priority.outputs.has_priority == 'true'
         run: python app/generate.py
 
@@ -101,7 +109,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/ data/state.json
-          git commit -m "chore: publish second daily Gemini quote"
+          git commit -m "chore: generate second Gemini quote"
           git push
 
       - name: Build second public image URL
@@ -110,10 +118,10 @@ jobs:
         shell: bash
         run: |
           FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
-          COMMIT_SHA=$(git rev-parse HEAD)
-          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${COMMIT_SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
+          SHA=$(git rev-parse HEAD)
+          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
 
-      - name: Publish second post to Instagram
+      - name: Publish second Instagram post
         if: steps.priority.outputs.has_priority == 'true'
         env:
           IMAGE_URL: ${{ steps.image2.outputs.url }}

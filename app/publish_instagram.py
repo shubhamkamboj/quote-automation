@@ -7,90 +7,228 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-LATEST = ROOT / "generated" / "latest.json"
+LATEST_FILE = ROOT / "generated" / "latest.json"
 
-API_VERSION = os.getenv("META_API_VERSION", "v25.0")
-IG_USER_ID = os.environ["IG_USER_ID"]
-ACCESS_TOKEN = os.environ["IG_ACCESS_TOKEN"]
-IMAGE_URL = os.environ["IMAGE_URL"]
+# These names intentionally match the existing GitHub repository secrets.
+ACCESS_TOKEN = os.getenv("INSTAGRAM_ACCESS_TOKEN", "").strip()
+IG_USER_ID = os.getenv("INSTAGRAM_ACCOUNT_ID", "").strip()
+
+# Optional repository variable. If not configured, the API version below is used.
+# Keep this configurable so the code does not depend on a token/API-version secret.
+META_API_VERSION = os.getenv("META_API_VERSION", "v25.0").strip()
+
+IMAGE_URL = os.getenv("IMAGE_URL", "").strip()
+DEFAULT_HASHTAGS = "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
 
 
-def api_post(path, data):
-    url = f"https://graph.instagram.com/{API_VERSION}/{path}"
-    response = requests.post(url, data=data, timeout=60)
+def fail(message: str):
+    raise RuntimeError(message)
+
+
+def require_config():
+    missing = []
+
+    if not ACCESS_TOKEN:
+        missing.append("INSTAGRAM_ACCESS_TOKEN")
+
+    if not IG_USER_ID:
+        missing.append("INSTAGRAM_ACCOUNT_ID")
+
+    if not IMAGE_URL:
+        missing.append("IMAGE_URL")
+
+    if missing:
+        fail(
+            "Missing required GitHub Actions value(s): "
+            + ", ".join(missing)
+        )
+
+    if not IMAGE_URL.startswith("https://"):
+        fail("IMAGE_URL must be a public HTTPS URL.")
+
+    if not META_API_VERSION:
+        fail("META_API_VERSION is empty.")
+
+
+def api_url(path: str) -> str:
+    return (
+        f"https://graph.instagram.com/"
+        f"{META_API_VERSION}/{path.lstrip('/')}"
+    )
+
+
+def post(path: str, data: dict) -> dict:
+    response = requests.post(
+        api_url(path),
+        data=data,
+        timeout=90,
+    )
+
     if not response.ok:
-        raise RuntimeError(f"Instagram API error {response.status_code}: {response.text}")
-    return response.json()
+        raise RuntimeError(
+            f"Instagram API error {response.status_code}: "
+            f"{response.text}"
+        )
+
+    try:
+        return response.json()
+    except ValueError as exc:
+        raise RuntimeError(
+            f"Instagram API returned invalid JSON: {response.text}"
+        ) from exc
 
 
-def api_get(path, params):
-    url = f"https://graph.instagram.com/{API_VERSION}/{path}"
-    response = requests.get(url, params=params, timeout=60)
+def get(path: str, params: dict) -> dict:
+    response = requests.get(
+        api_url(path),
+        params=params,
+        timeout=60,
+    )
+
     if not response.ok:
-        raise RuntimeError(f"Instagram API error {response.status_code}: {response.text}")
-    return response.json()
+        raise RuntimeError(
+            f"Instagram API error {response.status_code}: "
+            f"{response.text}"
+        )
+
+    try:
+        return response.json()
+    except ValueError as exc:
+        raise RuntimeError(
+            f"Instagram API returned invalid JSON: {response.text}"
+        ) from exc
+
+
+def load_metadata() -> dict:
+    if not LATEST_FILE.exists():
+        fail(f"Generated metadata file not found: {LATEST_FILE}")
+
+    try:
+        return json.loads(LATEST_FILE.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(
+            f"Invalid JSON in {LATEST_FILE}: {exc}"
+        ) from exc
+
+
+def build_caption(metadata: dict) -> str:
+    quote = str(metadata.get("quote", "")).strip()
+
+    if not quote:
+        fail("Generated quote is empty.")
+
+    hashtags = str(
+        metadata.get("hashtags")
+        or os.getenv("HASHTAGS", DEFAULT_HASHTAGS)
+    ).strip()
+
+    # Caption always contains the exact same quote rendered on the image.
+    return f"{quote}\n\n{hashtags}".strip()
+
+
+def wait_until_finished(container_id: str):
+    # Meta may need time to fetch/process the public image.
+    for attempt in range(18):
+        result = get(
+            container_id,
+            {
+                "fields": "status_code,status",
+                "access_token": ACCESS_TOKEN,
+            },
+        )
+
+        status_code = result.get("status_code")
+        status = result.get("status", "")
+
+        print(
+            f"Instagram container [{attempt + 1}/18]: "
+            f"{status_code} - {status}"
+        )
+
+        if status_code == "FINISHED":
+            return
+
+        if status_code in {"ERROR", "EXPIRED"}:
+            fail(f"Instagram media container failed: {result}")
+
+        time.sleep(5)
+
+    fail("Instagram media container did not reach FINISHED status.")
+
+
+def consume_priority_if_needed(metadata: dict):
+    if metadata.get("quote_source") != "priority":
+        return
+
+    priority_line = metadata.get("priority_line")
+    if not priority_line:
+        print("Priority quote source detected, but no priority_line was supplied.")
+        return
+
+    # Import only after successful Instagram publication.
+    from quote_source import remove_priority_quote
+
+    remove_priority_quote(int(priority_line))
+    print("Priority item consumed successfully.")
 
 
 def main():
-    if not IMAGE_URL.startswith("https://"):
-        raise RuntimeError("IMAGE_URL must be a public HTTPS URL.")
+    require_config()
 
-    metadata = json.loads(LATEST.read_text(encoding="utf-8")) if LATEST.exists() else {}
-    quote = metadata.get("quote", "")
-    hashtags = metadata.get("hashtags") or os.getenv(
-        "HASHTAGS", "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
-    )
-    # The Instagram caption intentionally starts with the exact same quote used on the image.
-    caption = f"{quote}\n\n{hashtags}".strip()
+    metadata = load_metadata()
+    caption = build_caption(metadata)
 
-    # Step 1: create the image media container.
-    container = api_post(
+    print(f"Instagram User ID: {IG_USER_ID}")
+    print(f"API version: {META_API_VERSION}")
+    print(f"Image URL: {IMAGE_URL}")
+    print(f"Quote source: {metadata.get('quote_source', 'unknown')}")
+
+    # Instagram Login / Instagram User Access Token flow.
+    # Meta documents:
+    #   POST /{ig_user_id}/media
+    #   POST /{ig_user_id}/media_publish
+    # on graph.instagram.com.
+    container = post(
         f"{IG_USER_ID}/media",
         {
             "image_url": IMAGE_URL,
             "caption": caption,
-            "alt_text": quote,
             "access_token": ACCESS_TOKEN,
         },
     )
-    creation_id = container["id"]
+
+    creation_id = container.get("id")
+
+    if not creation_id:
+        fail(f"No creation ID returned by Instagram: {container}")
+
     print(f"Created media container: {creation_id}")
 
-    # Give Instagram a moment to fetch/process the public image.
-    for _ in range(10):
-        status = api_get(
-            creation_id,
-            {"fields": "status_code,status", "access_token": ACCESS_TOKEN},
-        )
-        code = status.get("status_code")
-        print(f"Container status: {code} - {status.get('status', '')}")
-        if code == "FINISHED":
-            break
-        if code in {"ERROR", "EXPIRED"}:
-            raise RuntimeError(f"Container failed: {status}")
-        time.sleep(5)
+    wait_until_finished(creation_id)
 
-    # Step 2: publish the container.
-    result = api_post(
+    published = post(
         f"{IG_USER_ID}/media_publish",
-        {"creation_id": creation_id, "access_token": ACCESS_TOKEN},
+        {
+            "creation_id": creation_id,
+            "access_token": ACCESS_TOKEN,
+        },
     )
-    print(f"Published Instagram media: {result.get('id')}")
 
-    # A priority quote is removed only after Instagram confirms publication.
-    metadata = json.loads(LATEST.read_text(encoding="utf-8")) if LATEST.exists() else {}
-    if metadata.get("quote_source") == "priority" and metadata.get("priority_line"):
-        from quote_source import remove_priority_quote
-        remove_priority_quote(int(metadata["priority_line"]))
-        print("Consumed priority item from priority.txt.")
+    media_id = published.get("id")
+
+    if not media_id:
+        fail(f"No published media ID returned by Instagram: {published}")
+
+    print(f"Instagram post published successfully. Media ID: {media_id}")
+
+    # IMPORTANT:
+    # Priority content is removed only after the Instagram publish succeeds.
+    consume_priority_if_needed(metadata)
 
 
 if __name__ == "__main__":
     try:
         main()
-    except KeyError as exc:
-        print(f"Missing environment variable: {exc}", file=sys.stderr)
-        sys.exit(2)
     except Exception as exc:
-        print(str(exc), file=sys.stderr)
+        print(f"ERROR: {exc}", file=sys.stderr)
         sys.exit(1)
