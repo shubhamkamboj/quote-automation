@@ -79,8 +79,10 @@ jobs:
               export FORCE_GEMINI=true
             fi
 
-            # Generates one item from the prepared 4-post batch.
-            # Gemini is used once per run; fallback_quotes.txt is used if Gemini fails.
+            # Prepare one post. The first call creates the complete 4-post
+            # batch in data/pending_posts.json. Gemini is normally called
+            # only once per scheduled run; fallback quotes are used if Gemini
+            # is unavailable.
             python app/generate.py
 
             FILE=$(python - <<'PY'
@@ -102,7 +104,6 @@ jobs:
               data/state.json \
               data/pending_posts.json
 
-            # Avoid failing when there is nothing new to commit.
             git diff --cached --quiet || \
               git commit -m "chore: generate post ${POST_NUMBER}/4"
 
@@ -144,8 +145,8 @@ jobs:
                   if (
                       response.ok
                       and (
-                      content_type.startswith("image/jpeg")
-                      or content_type.startswith("application/octet-stream")
+                          content_type.startswith("image/jpeg")
+                          or content_type.startswith("application/octet-stream")
                       )
                   ):
                       print("Image is publicly available.")
@@ -158,7 +159,7 @@ jobs:
 
           else:
               raise SystemExit(
-                  "Generated image was not publicly available as JPEG."
+                  "Generated image was not publicly available."
               )
           PY
 
@@ -223,10 +224,9 @@ jobs:
                       f"Content-Type={content_type}"
                   )
 
-                  if (
-                      response.ok
-                      and content_type.startswith("video/mp4")
-                  ):
+                  # GitHub Raw can serve an MP4 as application/octet-stream.
+                  # The important check is that the file is publicly reachable.
+                  if response.ok:
                       print("Reel video is publicly available.")
                       break
 
@@ -239,7 +239,7 @@ jobs:
 
           else:
               raise SystemExit(
-                  "Generated reel was not publicly available as MP4."
+                  "Generated reel was not publicly available."
               )
           PY
 
@@ -256,7 +256,7 @@ jobs:
 
             if [ "$SOURCE" = "priority" ]; then
               if [ -f app/consume_priority.py ]; then
-                python app/consume_priority.py || true
+                python app/consume_priority.py
               fi
 
               if ! git diff --quiet -- priority.txt; then
