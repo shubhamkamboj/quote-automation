@@ -2,24 +2,31 @@ name: Daily Hindi Quote
 
 on:
   schedule:
-    - cron: '0 14 * * *' # 19:30 IST
+    # GitHub Actions supports timezone-aware schedules.
+    # All three times are India time (Asia/Kolkata).
+    - cron: "0 6,14,19 * * *"
+      timezone: "Asia/Kolkata"
+
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: daily-instagram-publishing
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
 
-      # Existing GitHub repository secret names.
       INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
       INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
 
-      # Optional; publish_instagram.py defaults to v25.0 when absent.
       META_API_VERSION: ${{ vars.META_API_VERSION }}
 
       HASHTAGS: ${{ vars.HASHTAGS }}
@@ -41,7 +48,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -56,114 +63,139 @@ jobs:
           print("true" if quote else "false")
           PY
           )
+
           echo "has_priority=$HAS_PRIORITY" >> "$GITHUB_OUTPUT"
           echo "Priority available: $HAS_PRIORITY"
 
-      - name: Generate first image
-        run: python app/generate.py
-
-      - name: Commit first generated image and state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f generated/*.jpg generated/latest.json data/state.json
-          git commit -m "chore: generate daily quote"
-          git push
-
-      - name: Build first public image URL
-        id: image1
+      - name: Publish 4 unique posts
         shell: bash
         run: |
-          FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
-          URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/generated/${FILE}"
-          echo "url=$URL" >> "$GITHUB_OUTPUT"
-          echo "Public image URL: $URL"
+          set -euo pipefail
 
-      - name: Wait for first public image
-        env:
-          IMAGE_URL: ${{ steps.image1.outputs.url }}
-        run: |
-          python - <<'PY'
-          import os, time, requests
-          url = os.environ["IMAGE_URL"]
-          for attempt in range(12):
-              r = requests.get(url, stream=True, allow_redirects=True, timeout=20,
-                               headers={"User-Agent": "quote-automation/1.0"})
-              ct = (r.headers.get("Content-Type") or "").lower()
-              print(f"Attempt {attempt+1}: HTTP {r.status_code}, Content-Type={ct}")
-              if r.ok and ct.startswith("image/jpeg"):
-                  break
-              time.sleep(5)
-          else:
-              raise SystemExit("GitHub raw image was not available as JPEG after waiting.")
+          for POST_NUMBER in 1 2 3 4; do
+
+            echo "========================================"
+            echo "Generating post ${POST_NUMBER}/4"
+            echo "========================================"
+
+            if [ "$POST_NUMBER" -eq 1 ]; then
+              export FORCE_GEMINI=false
+
+              if [ "${{ steps.priority.outputs.has_priority }}" = "true" ]; then
+                echo "Post 1 source: PRIORITY"
+              else
+                echo "Post 1 source: GEMINI"
+              fi
+            else
+              export FORCE_GEMINI=true
+              echo "Post ${POST_NUMBER} source: GEMINI"
+            fi
+
+            # Generate one new image + one new quote.
+            python app/generate.py
+
+            FILE=$(python - <<'PY'
+          import json
+          with open("generated/latest.json", encoding="utf-8") as f:
+              print(json.load(f)["filename"])
           PY
+            )
 
-      - name: Publish first Instagram post
-        env:
-          IMAGE_URL: ${{ steps.image1.outputs.url }}
-        run: python app/publish_instagram.py
+            echo "Generated file: $FILE"
 
-      - name: Commit consumed priority item
-        if: steps.priority.outputs.has_priority == 'true'
-        run: |
-          if git diff --quiet -- priority.txt; then
-            echo "No priority item was consumed."
-          else
+            # Only add the files needed for this post.
+            # -f is required because generated JPGs may be gitignored.
+            git add -f \
+              "generated/$FILE" \
+              generated/latest.jpg \
+              generated/latest.json \
+              data/state.json
+
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add priority.txt
-            git commit -m "chore: consume priority quote"
+
+            git commit -m "chore: generate post ${POST_NUMBER}/4"
             git push
-          fi
 
-      - name: Generate second Gemini image
-        if: steps.priority.outputs.has_priority == 'true'
-        run: python app/generate.py
+            SHA=$(git rev-parse HEAD)
 
-      - name: Commit second generated image and state
-        if: steps.priority.outputs.has_priority == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/ data/state.json
-          git commit -m "chore: generate second Gemini quote"
-          git push
+            IMAGE_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}"
 
-      - name: Build second public image URL
-        id: image2
-        if: steps.priority.outputs.has_priority == 'true'
-        shell: bash
-        run: |
-          FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
-          URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/generated/${FILE}"
-          echo "url=$URL" >> "$GITHUB_OUTPUT"
-          echo "Public image URL: $URL"
+            echo "Public image URL:"
+            echo "$IMAGE_URL"
 
-      - name: Wait for second public image
-        if: steps.priority.outputs.has_priority == 'true'
-        env:
-          IMAGE_URL: ${{ steps.image2.outputs.url }}
-        run: |
-          python - <<'PY'
-          import os, time, requests
+            echo "Waiting for GitHub raw image..."
+
+            export IMAGE_URL
+
+            python - <<'PY'
+          import os
+          import time
+          import requests
+
           url = os.environ["IMAGE_URL"]
+
           for attempt in range(12):
-              r = requests.get(url, stream=True, allow_redirects=True, timeout=20,
-                               headers={"User-Agent": "quote-automation/1.0"})
-              ct = (r.headers.get("Content-Type") or "").lower()
-              print(f"Attempt {attempt+1}: HTTP {r.status_code}, Content-Type={ct}")
-              if r.ok and ct.startswith("image/jpeg"):
-                  break
+              try:
+                  response = requests.get(
+                      url,
+                      stream=True,
+                      allow_redirects=True,
+                      timeout=20,
+                      headers={
+                          "User-Agent": "quote-automation/1.0"
+                      },
+                  )
+
+                  content_type = (
+                      response.headers.get("Content-Type")
+                      or ""
+                  ).lower()
+
+                  print(
+                      f"Attempt {attempt + 1}: "
+                      f"HTTP {response.status_code}, "
+                      f"Content-Type={content_type}"
+                  )
+
+                  if (
+                      response.ok
+                      and content_type.startswith("image/jpeg")
+                  ):
+                      print("Image is publicly available.")
+                      break
+
+              except Exception as exc:
+                  print(
+                      f"Attempt {attempt + 1} failed: {exc}"
+                  )
+
               time.sleep(5)
+
           else:
-              raise SystemExit("Second GitHub raw image was not available as JPEG after waiting.")
+              raise SystemExit(
+                  "Generated image was not publicly available "
+                  "as JPEG after waiting."
+              )
           PY
 
-      - name: Publish second Instagram post
-        if: steps.priority.outputs.has_priority == 'true'
-        env:
-          IMAGE_URL: ${{ steps.image2.outputs.url }}
-        run: python app/publish_instagram.py
+            echo "Publishing post ${POST_NUMBER}/4..."
+
+            python app/publish_instagram.py
+
+            # publish_instagram.py removes the priority line only after
+            # Instagram confirms publication.
+            if git diff --quiet -- priority.txt; then
+              echo "No priority.txt change for post ${POST_NUMBER}."
+            else
+              git add priority.txt
+              git commit -m "chore: consume priority content"
+              git push
+            fi
+
+            echo "Post ${POST_NUMBER}/4 published successfully."
+
+          done
 
       - name: Send failure email
         if: failure()
