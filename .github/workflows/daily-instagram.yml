@@ -2,11 +2,8 @@ name: Daily Hindi Quote
 
 on:
   schedule:
-    # GitHub Actions supports timezone-aware schedules.
-    # All three times are India time (Asia/Kolkata).
     - cron: "0 6,14,19 * * *"
       timezone: "Asia/Kolkata"
-
   workflow_dispatch:
 
 permissions:
@@ -53,45 +50,24 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Check priority queue
-        id: priority
-        shell: bash
-        run: |
-          HAS_PRIORITY=$(python - <<'PY'
-          from app.quote_source import get_priority_quote
-          quote, _ = get_priority_quote()
-          print("true" if quote else "false")
-          PY
-          )
-
-          echo "has_priority=$HAS_PRIORITY" >> "$GITHUB_OUTPUT"
-          echo "Priority available: $HAS_PRIORITY"
-
-      - name: Publish 4 unique posts
+      - name: Publish 4 photo + reel posts
         shell: bash
         run: |
           set -euo pipefail
 
           for POST_NUMBER in 1 2 3 4; do
-
             echo "========================================"
             echo "Generating post ${POST_NUMBER}/4"
             echo "========================================"
 
             if [ "$POST_NUMBER" -eq 1 ]; then
               export FORCE_GEMINI=false
-
-              if [ "${{ steps.priority.outputs.has_priority }}" = "true" ]; then
-                echo "Post 1 source: PRIORITY"
-              else
-                echo "Post 1 source: GEMINI"
-              fi
             else
               export FORCE_GEMINI=true
-              echo "Post ${POST_NUMBER} source: GEMINI"
             fi
 
-            # Generate one new image + one new quote.
+            # Prepare one post. The first call creates the complete 4-post
+            # batch in data/pending_posts.json, so Gemini is called once/run.
             python app/generate.py
 
             FILE=$(python - <<'PY'
@@ -101,30 +77,23 @@ jobs:
           PY
             )
 
-            echo "Generated file: $FILE"
+            echo "Generated image: $FILE"
 
-            # Only add the files needed for this post.
-            # -f is required because generated JPGs may be gitignored.
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
             git add -f \
               "generated/$FILE" \
               generated/latest.jpg \
               generated/latest.json \
-              data/state.json
-
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              data/state.json \
+              data/pending_posts.json
 
             git commit -m "chore: generate post ${POST_NUMBER}/4"
             git push
 
             SHA=$(git rev-parse HEAD)
-
             IMAGE_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}"
-
-            echo "Public image URL:"
-            echo "$IMAGE_URL"
-
-            echo "Waiting for GitHub raw image..."
 
             export IMAGE_URL
 
@@ -142,9 +111,7 @@ jobs:
                       stream=True,
                       allow_redirects=True,
                       timeout=20,
-                      headers={
-                          "User-Agent": "quote-automation/1.0"
-                      },
+                      headers={"User-Agent": "quote-automation/1.0"},
                   )
 
                   content_type = (
@@ -166,35 +133,123 @@ jobs:
                       break
 
               except Exception as exc:
+                  print(f"Attempt {attempt + 1} failed: {exc}")
+
+              time.sleep(5)
+
+          else:
+              raise SystemExit(
+                  "Generated image was not publicly available as JPEG."
+              )
+          PY
+
+            echo "Publishing photo..."
+            python app/publish_instagram.py
+
+            # Create Reel from the same photo.
+            echo "Creating reel..."
+            python app/create_reel.py
+
+            REEL_FILE=$(python - <<'PY'
+          import json
+          with open("generated/latest.json", encoding="utf-8") as f:
+              print(json.load(f)["reel_filename"])
+          PY
+            )
+
+            echo "Generated reel: $REEL_FILE"
+
+            git add -f \
+              "generated/$REEL_FILE" \
+              generated/latest.json
+
+            git commit -m "chore: generate reel ${POST_NUMBER}/4"
+            git push
+
+            REEL_SHA=$(git rev-parse HEAD)
+            REEL_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${REEL_SHA}/generated/${REEL_FILE}"
+
+            export REEL_URL
+
+            python - <<'PY'
+          import os
+          import time
+          import requests
+
+          url = os.environ["REEL_URL"]
+
+          for attempt in range(12):
+              try:
+                  response = requests.get(
+                      url,
+                      stream=True,
+                      allow_redirects=True,
+                      timeout=30,
+                      headers={"User-Agent": "quote-automation/1.0"},
+                  )
+
+                  content_type = (
+                      response.headers.get("Content-Type")
+                      or ""
+                  ).lower()
+
                   print(
-                      f"Attempt {attempt + 1} failed: {exc}"
+                      f"Reel attempt {attempt + 1}: "
+                      f"HTTP {response.status_code}, "
+                      f"Content-Type={content_type}"
+                  )
+
+                  if (
+                      response.ok
+                      and content_type.startswith("video/mp4")
+                  ):
+                      print("Reel video is publicly available.")
+                      break
+
+              except Exception as exc:
+                  print(
+                      f"Reel attempt {attempt + 1} failed: {exc}"
                   )
 
               time.sleep(5)
 
           else:
               raise SystemExit(
-                  "Generated image was not publicly available "
-                  "as JPEG after waiting."
+                  "Generated reel was not publicly available as MP4."
               )
           PY
 
-            echo "Publishing post ${POST_NUMBER}/4..."
+            echo "Publishing reel..."
+            python app/publish_reel.py
 
-            python app/publish_instagram.py
+            # Consume priority/fallback ONLY after BOTH photo and reel succeed.
+            SOURCE=$(python - <<'PY'
+          import json
+          with open("generated/latest.json", encoding="utf-8") as f:
+              print(json.load(f).get("quote_source", ""))
+          PY
+            )
 
-            # publish_instagram.py removes the priority line only after
-            # Instagram confirms publication.
-            if git diff --quiet -- priority.txt; then
-              echo "No priority.txt change for post ${POST_NUMBER}."
-            else
-              git add priority.txt
-              git commit -m "chore: consume priority content"
-              git push
+            if [ "$SOURCE" = "priority" ]; then
+              python app/consume_priority.py
+
+              if ! git diff --quiet -- priority.txt; then
+                git add priority.txt
+                git commit -m "chore: consume priority content"
+                git push
+              fi
+
+            elif [ "$SOURCE" = "fallback" ]; then
+              python app/consume_fallback.py
+
+              if ! git diff --quiet -- data/fallback_quotes.txt; then
+                git add data/fallback_quotes.txt
+                git commit -m "chore: consume fallback quote"
+                git push
+              fi
             fi
 
-            echo "Post ${POST_NUMBER}/4 published successfully."
-
+            echo "Post + reel ${POST_NUMBER}/4 published successfully."
           done
 
       - name: Send failure email
