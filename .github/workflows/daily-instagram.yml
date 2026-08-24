@@ -19,7 +19,6 @@ jobs:
       HASHTAGS: ${{ secrets.HASHTAGS }}
       AUTO_HASHTAGS: ${{ secrets.AUTO_HASHTAGS || 'true' }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
       SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}

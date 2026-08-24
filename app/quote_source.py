@@ -67,7 +67,9 @@ def _gemini_client() -> genai.Client:
 
 
 def _gemini_model() -> str:
-    return os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    # Keep the model fixed so an empty GitHub secret can never produce
+    # the Gemini SDK error: "model is required."
+    return "gemini-2.5-flash"
 
 
 def generate_gemini_quote() -> str:
