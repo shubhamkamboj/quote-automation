@@ -9,18 +9,11 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 LATEST_FILE = ROOT / "generated" / "latest.json"
 
-# Existing GitHub repository secret names
 ACCESS_TOKEN = os.getenv("INSTAGRAM_ACCESS_TOKEN", "").strip()
 IG_USER_ID = os.getenv("INSTAGRAM_ACCOUNT_ID", "").strip()
-
-# Optional GitHub repository variable.
-# If META_API_VERSION is not configured, use the default below.
-META_API_VERSION = (
-    os.getenv("META_API_VERSION", "").strip()
-    or "v25.0"
-)
-
+META_API_VERSION = os.getenv("META_API_VERSION", "").strip() or "v25.0"
 IMAGE_URL = os.getenv("IMAGE_URL", "").strip()
+
 DEFAULT_HASHTAGS = "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
 
 
@@ -30,21 +23,15 @@ def fail(message: str):
 
 def require_config():
     missing = []
-
     if not ACCESS_TOKEN:
         missing.append("INSTAGRAM_ACCESS_TOKEN")
-
     if not IG_USER_ID:
         missing.append("INSTAGRAM_ACCOUNT_ID")
-
     if not IMAGE_URL:
         missing.append("IMAGE_URL")
 
     if missing:
-        fail(
-            "Missing required GitHub Actions value(s): "
-            + ", ".join(missing)
-        )
+        fail("Missing required GitHub Actions value(s): " + ", ".join(missing))
 
     if not IMAGE_URL.startswith("https://"):
         fail("IMAGE_URL must be a public HTTPS URL.")
@@ -55,11 +42,7 @@ def api_url(path: str) -> str:
 
 
 def post(path: str, data: dict) -> dict:
-    response = requests.post(
-        api_url(path),
-        data=data,
-        timeout=90,
-    )
+    response = requests.post(api_url(path), data=data, timeout=90)
 
     if not response.ok:
         raise RuntimeError(
@@ -75,11 +58,7 @@ def post(path: str, data: dict) -> dict:
 
 
 def get(path: str, params: dict) -> dict:
-    response = requests.get(
-        api_url(path),
-        params=params,
-        timeout=60,
-    )
+    response = requests.get(api_url(path), params=params, timeout=60)
 
     if not response.ok:
         raise RuntimeError(
@@ -98,17 +77,11 @@ def load_metadata() -> dict:
     if not LATEST_FILE.exists():
         fail(f"Generated metadata file not found: {LATEST_FILE}")
 
-    try:
-        return json.loads(LATEST_FILE.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise RuntimeError(
-            f"Invalid JSON in {LATEST_FILE}: {exc}"
-        ) from exc
+    return json.loads(LATEST_FILE.read_text(encoding="utf-8"))
 
 
 def build_caption(metadata: dict) -> str:
     quote = str(metadata.get("quote", "")).strip()
-
     if not quote:
         fail("Generated quote is empty.")
 
@@ -118,6 +91,38 @@ def build_caption(metadata: dict) -> str:
     ).strip()
 
     return f"{quote}\n\n{hashtags}".strip()
+
+
+def verify_image_url() -> None:
+    """
+    Verify that the URL is publicly reachable and is an image before asking
+    Instagram to fetch it. GitHub raw can occasionally respond with redirects,
+    so allow redirects and verify the final Content-Type.
+    """
+    response = requests.get(
+        IMAGE_URL,
+        stream=True,
+        allow_redirects=True,
+        timeout=30,
+        headers={"User-Agent": "quote-automation/1.0"},
+    )
+
+    if not response.ok:
+        raise RuntimeError(
+            f"IMAGE_URL is not publicly reachable. "
+            f"HTTP {response.status_code}: {IMAGE_URL}"
+        )
+
+    content_type = (response.headers.get("Content-Type") or "").lower()
+
+    print(f"Image URL final URL: {response.url}")
+    print(f"Image URL Content-Type: {content_type}")
+
+    if not content_type.startswith("image/"):
+        raise RuntimeError(
+            f"IMAGE_URL did not return an image. "
+            f"Content-Type={content_type}, URL={response.url}"
+        )
 
 
 def wait_until_finished(container_id: str):
@@ -175,9 +180,9 @@ def main():
     print(f"Image URL: {IMAGE_URL}")
     print(f"Quote source: {metadata.get('quote_source', 'unknown')}")
 
-    # Instagram Login / Instagram User Access Token flow.
-    # Host: graph.instagram.com
-    # Step 1: create media container
+    # Fail early with a useful error if GitHub is not serving the image.
+    verify_image_url()
+
     container = post(
         f"{IG_USER_ID}/media",
         {
@@ -188,7 +193,6 @@ def main():
     )
 
     creation_id = container.get("id")
-
     if not creation_id:
         fail(f"No creation ID returned by Instagram: {container}")
 
@@ -196,7 +200,6 @@ def main():
 
     wait_until_finished(creation_id)
 
-    # Step 2: publish the media container
     published = post(
         f"{IG_USER_ID}/media_publish",
         {
@@ -206,13 +209,12 @@ def main():
     )
 
     media_id = published.get("id")
-
     if not media_id:
         fail(f"No published media ID returned by Instagram: {published}")
 
     print(f"Instagram post published successfully. Media ID: {media_id}")
 
-    # Only consume priority after Instagram confirms publication.
+    # Consume priority only after successful publication.
     consume_priority_if_needed(metadata)
 
 

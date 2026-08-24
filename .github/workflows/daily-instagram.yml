@@ -2,8 +2,7 @@ name: Daily Hindi Quote
 
 on:
   schedule:
-    # 19:30 IST = 14:00 UTC
-    - cron: "0 14 * * *"
+    - cron: "0 14 * * *" # 19:30 IST
   workflow_dispatch:
 
 permissions:
@@ -14,15 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      # Existing GitHub repository secrets — keep these exact names.
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+
+      # Existing GitHub secret names
       INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
       INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
 
-      # Existing repository variable for Gemini model.
-      GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
-
-      # Optional repository variable. If absent, publish_instagram.py uses v25.0.
+      # Optional; publish_instagram.py falls back to v25.0
       META_API_VERSION: ${{ vars.META_API_VERSION }}
 
       HASHTAGS: ${{ vars.HASHTAGS }}
@@ -73,13 +71,46 @@ jobs:
           git commit -m "chore: generate daily quote"
           git push
 
-      - name: Build first public image URL
+      - name: Verify stable image exists on GitHub
         id: image1
         shell: bash
         run: |
-          FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
-          SHA=$(git rev-parse HEAD)
-          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
+          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/generated/latest.jpg" >> "$GITHUB_OUTPUT"
+          echo "Using image URL: https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/generated/latest.jpg"
+
+      - name: Wait for GitHub raw image availability
+        env:
+          IMAGE_URL: ${{ steps.image1.outputs.url }}
+        run: |
+          python - <<'PY'
+          import os
+          import time
+          import requests
+
+          url = os.environ["IMAGE_URL"]
+
+          for attempt in range(12):
+              try:
+                  r = requests.get(
+                      url,
+                      stream=True,
+                      allow_redirects=True,
+                      timeout=20,
+                      headers={"User-Agent": "quote-automation/1.0"},
+                  )
+                  ct = (r.headers.get("Content-Type") or "").lower()
+                  print(f"Attempt {attempt + 1}: HTTP {r.status_code}, Content-Type={ct}, URL={r.url}")
+
+                  if r.ok and ct.startswith("image/"):
+                      print("Stable image URL is ready.")
+                      break
+              except Exception as exc:
+                  print(f"Attempt {attempt + 1} failed: {exc}")
+
+              time.sleep(5)
+          else:
+              raise SystemExit("GitHub raw image was not available after waiting.")
+          PY
 
       - name: Publish first Instagram post
         env:
@@ -107,19 +138,52 @@ jobs:
         if: steps.priority.outputs.has_priority == 'true'
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@noreply.github.com"
           git add generated/ data/state.json
           git commit -m "chore: generate second Gemini quote"
           git push
 
-      - name: Build second public image URL
+      - name: Set second image URL
         id: image2
         if: steps.priority.outputs.has_priority == 'true'
         shell: bash
         run: |
-          FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
-          SHA=$(git rev-parse HEAD)
-          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
+          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/generated/latest.jpg" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for second GitHub raw image
+        if: steps.priority.outputs.has_priority == 'true'
+        env:
+          IMAGE_URL: ${{ steps.image2.outputs.url }}
+        run: |
+          python - <<'PY'
+          import os
+          import time
+          import requests
+
+          url = os.environ["IMAGE_URL"]
+
+          for attempt in range(12):
+              try:
+                  r = requests.get(
+                      url,
+                      stream=True,
+                      allow_redirects=True,
+                      timeout=20,
+                      headers={"User-Agent": "quote-automation/1.0"},
+                  )
+                  ct = (r.headers.get("Content-Type") or "").lower()
+                  print(f"Attempt {attempt + 1}: HTTP {r.status_code}, Content-Type={ct}, URL={r.url}")
+
+                  if r.ok and ct.startswith("image/"):
+                      print("Second stable image URL is ready.")
+                      break
+              except Exception as exc:
+                  print(f"Attempt {attempt + 1} failed: {exc}")
+
+              time.sleep(5)
+          else:
+              raise SystemExit("Second GitHub raw image was not available after waiting.")
+          PY
 
       - name: Publish second Instagram post
         if: steps.priority.outputs.has_priority == 'true'
