@@ -1,0 +1,4 @@
+# Optional priority queue.
+# Put one quote/content item per line below.
+# The first non-empty line is published before Gemini.
+# After successful Instagram publishing, that line is removed automatically.

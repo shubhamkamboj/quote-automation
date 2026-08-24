@@ -1,0 +1,124 @@
+name: Daily Hindi Quote
+
+on:
+  schedule:
+    # 19:30 IST = 14:00 UTC. Change this if you want another posting time.
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      META_API_VERSION: ${{ secrets.META_API_VERSION }}
+      HASHTAGS: ${{ secrets.HASHTAGS }}
+      AUTO_HASHTAGS: ${{ secrets.AUTO_HASHTAGS || 'true' }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      ALERT_FROM_EMAIL: ${{ secrets.ALERT_FROM_EMAIL }}
+      ALERT_TO_EMAIL: ${{ secrets.ALERT_TO_EMAIL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check priority queue
+        id: priority
+        shell: bash
+        run: |
+          HAS_PRIORITY=$(python - <<'PY'
+          from app.quote_source import get_priority_quote
+          quote, _ = get_priority_quote()
+          print("true" if quote else "false")
+          PY
+          )
+          echo "has_priority=$HAS_PRIORITY" >> "$GITHUB_OUTPUT"
+          echo "Priority available: $HAS_PRIORITY"
+
+      - name: Generate first image (priority or Gemini)
+        run: python app/generate.py
+
+      - name: Commit first generated image and state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/ data/state.json
+          git commit -m "chore: publish first daily quote"
+          git push
+
+      - name: Build first public image URL
+        id: image1
+        shell: bash
+        run: |
+          FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
+          COMMIT_SHA=$(git rev-parse HEAD)
+          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${COMMIT_SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish first post to Instagram
+        env:
+          IMAGE_URL: ${{ steps.image1.outputs.url }}
+        run: python app/publish_instagram.py
+
+      - name: Commit consumed priority item
+        if: steps.priority.outputs.has_priority == 'true'
+        run: |
+          if git diff --quiet -- priority.txt; then
+            echo "Priority was detected but no priority change was produced."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add priority.txt
+            git commit -m "chore: consume priority quote"
+            git push
+          fi
+
+      - name: Generate second image from Gemini
+        if: steps.priority.outputs.has_priority == 'true'
+        run: python app/generate.py
+
+      - name: Commit second generated image and state
+        if: steps.priority.outputs.has_priority == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/ data/state.json
+          git commit -m "chore: publish second daily Gemini quote"
+          git push
+
+      - name: Build second public image URL
+        id: image2
+        if: steps.priority.outputs.has_priority == 'true'
+        shell: bash
+        run: |
+          FILE=$(python -c "import json; print(json.load(open('generated/latest.json', encoding='utf-8'))['filename'])")
+          COMMIT_SHA=$(git rev-parse HEAD)
+          echo "url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${COMMIT_SHA}/generated/${FILE}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish second post to Instagram
+        if: steps.priority.outputs.has_priority == 'true'
+        env:
+          IMAGE_URL: ${{ steps.image2.outputs.url }}
+        run: python app/publish_instagram.py
+
+      - name: Send failure email
+        if: failure()
+        run: python app/notify_failure.py
