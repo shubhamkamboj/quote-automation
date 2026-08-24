@@ -20,8 +20,7 @@ def _clean_text(value: str) -> str:
 def get_priority_quote() -> tuple[str | None, int | None]:
     """Return the first non-empty priority line and its 1-based line number.
 
-    priority.txt is an optional addon. Missing or empty file is intentionally
-    treated as normal and simply falls back to Gemini.
+    priority.txt is optional. Missing or empty file is normal and falls back to Gemini.
     """
     if not PRIORITY_FILE.exists():
         return None, None
@@ -36,7 +35,7 @@ def get_priority_quote() -> tuple[str | None, int | None]:
 
 
 def remove_priority_quote(line_number: int | None) -> None:
-    """Remove one priority line after Instagram publication succeeds."""
+    """Remove one priority line only after Instagram publication succeeds."""
     if not line_number or not PRIORITY_FILE.exists():
         return
 
@@ -56,20 +55,29 @@ def _state() -> dict:
 
 
 def _save_state(state: dict) -> None:
-    STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+    STATE_FILE.write_text(
+        json.dumps(state, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
 
 def _gemini_client() -> genai.Client:
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY is not configured.")
     return genai.Client(api_key=api_key)
 
 
 def _gemini_model() -> str:
-    # Keep the model fixed so an empty GitHub secret can never produce
-    # the Gemini SDK error: "model is required."
-    return "gemini-2.5-flash"
+    # Model is intentionally NOT hard-coded.
+    # Configure GEMINI_MODEL in GitHub Actions / environment.
+    model = os.getenv("GEMINI_MODEL", "").strip()
+    if not model:
+        raise RuntimeError(
+            "GEMINI_MODEL is not configured. "
+            "Add GEMINI_MODEL to the GitHub Actions environment/secrets."
+        )
+    return model
 
 
 def generate_gemini_quote() -> str:
@@ -95,7 +103,11 @@ Recent quotes:
 {recent_text}
 """.strip()
 
-    response = client.models.generate_content(model=_gemini_model(), contents=prompt)
+    response = client.models.generate_content(
+        model=_gemini_model(),
+        contents=prompt,
+    )
+
     quote = _clean_text(response.text or "")
     if not quote:
         raise RuntimeError("Gemini returned an empty quote.")
@@ -120,8 +132,10 @@ def _extract_hashtags(text: str) -> list[str]:
 
 
 def generate_hashtags(quote: str) -> str:
-    """Generate five relevant/popular hashtags; fall back without failing the post."""
-    if os.getenv("AUTO_HASHTAGS", "true").lower() not in {"1", "true", "yes", "on"}:
+    """Generate five relevant hashtags; fall back without failing the post."""
+    if os.getenv("AUTO_HASHTAGS", "true").lower() not in {
+        "1", "true", "yes", "on"
+    }:
         return os.getenv("HASHTAGS", DEFAULT_HASHTAGS)
 
     try:
@@ -140,7 +154,11 @@ Rules:
 - No explanation, numbering, commas, emojis, or quotes.
 - Every item must start with #.
 """.strip()
-        response = client.models.generate_content(model=_gemini_model(), contents=prompt)
+
+        response = client.models.generate_content(
+            model=_gemini_model(),
+            contents=prompt,
+        )
         tags = _extract_hashtags(response.text or "")
         if len(tags) >= 5:
             return " ".join(tags[:5])
@@ -153,6 +171,7 @@ Rules:
 def get_quote() -> tuple[str, str, int | None]:
     """Priority text first; otherwise generate a fresh Gemini quote."""
     priority_quote, line_number = get_priority_quote()
+
     if priority_quote:
         return priority_quote, "priority", line_number
 
