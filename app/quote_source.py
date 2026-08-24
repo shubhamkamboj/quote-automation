@@ -8,7 +8,6 @@ from google import genai
 ROOT = Path(__file__).resolve().parents[1]
 STATE_FILE = ROOT / "data" / "state.json"
 PRIORITY_FILE = ROOT / "priority.txt"
-
 DEFAULT_HASHTAGS = "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
 
 
@@ -18,10 +17,6 @@ def _clean_text(value: str) -> str:
 
 
 def get_priority_quote() -> tuple[str | None, int | None]:
-    """Return the first non-empty priority line and its 1-based line number.
-
-    priority.txt is optional. Missing or empty file is normal and falls back to Gemini.
-    """
     if not PRIORITY_FILE.exists():
         return None, None
 
@@ -35,7 +30,6 @@ def get_priority_quote() -> tuple[str | None, int | None]:
 
 
 def remove_priority_quote(line_number: int | None) -> None:
-    """Remove one priority line only after Instagram publication succeeds."""
     if not line_number or not PRIORITY_FILE.exists():
         return
 
@@ -69,20 +63,17 @@ def _gemini_client() -> genai.Client:
 
 
 def _gemini_model() -> str:
-    # Model is intentionally NOT hard-coded.
-    # Configure GEMINI_MODEL in GitHub Actions / environment.
     model = os.getenv("GEMINI_MODEL", "").strip()
     if not model:
         raise RuntimeError(
             "GEMINI_MODEL is not configured. "
-            "Add GEMINI_MODEL to the GitHub Actions environment/secrets."
+            "Add it as a GitHub Actions Repository Variable."
         )
     return model
 
 
 def generate_gemini_quote() -> str:
     client = _gemini_client()
-
     state = _state()
     recent = state.get("recent_gemini_quotes", [])
     recent_text = "\n".join(f"- {q}" for q in recent[-20:]) or "(none)"
@@ -96,8 +87,8 @@ Rules:
 - 8 to 22 Hindi words.
 - Natural, emotional, positive and meaningful.
 - Suitable for a clean diary / life-quotes Instagram page.
-- Do not use hashtags, quotation marks, emojis, attribution, numbering, or explanations.
-- Do not repeat or closely paraphrase any recent quotes below.
+- No hashtags, quotation marks, emojis, attribution, numbering, or explanation.
+- Do not repeat or closely paraphrase any recent quote below.
 
 Recent quotes:
 {recent_text}
@@ -107,8 +98,8 @@ Recent quotes:
         model=_gemini_model(),
         contents=prompt,
     )
-
     quote = _clean_text(response.text or "")
+
     if not quote:
         raise RuntimeError("Gemini returned an empty quote.")
     if len(quote.split()) < 4:
@@ -132,17 +123,11 @@ def _extract_hashtags(text: str) -> list[str]:
 
 
 def generate_hashtags(quote: str) -> str:
-    """Generate five relevant hashtags; fall back without failing the post."""
-    if os.getenv("AUTO_HASHTAGS", "true").lower() not in {
-        "1", "true", "yes", "on"
-    }:
-        return os.getenv("HASHTAGS", DEFAULT_HASHTAGS)
-
     try:
         client = _gemini_client()
         prompt = f"""
-For this Hindi Instagram life quote, return exactly 5 popular, high-discovery,
-currently relevant hashtags for Hindi quotes, motivation, life and positive content.
+For this Hindi Instagram life quote, return exactly 5 relevant and popular
+hashtags for Hindi quotes, motivation, life and positive content.
 
 Quote:
 {quote}
@@ -150,9 +135,8 @@ Quote:
 Rules:
 - Return only hashtags separated by spaces.
 - Exactly 5 hashtags.
-- Use common Instagram hashtags, mostly English for discoverability.
+- Mostly English hashtags for discoverability.
 - No explanation, numbering, commas, emojis, or quotes.
-- Every item must start with #.
 """.strip()
 
         response = client.models.generate_content(
@@ -169,9 +153,8 @@ Rules:
 
 
 def get_quote() -> tuple[str, str, int | None]:
-    """Priority text first; otherwise generate a fresh Gemini quote."""
+    # Priority ALWAYS wins when a non-empty line exists.
     priority_quote, line_number = get_priority_quote()
-
     if priority_quote:
         return priority_quote, "priority", line_number
 

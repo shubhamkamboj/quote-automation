@@ -7,98 +7,45 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-LATEST_FILE = ROOT / "generated" / "latest.json"
+LATEST = ROOT / "generated" / "latest.json"
 
+# Existing GitHub secret names used by the user's repository.
 ACCESS_TOKEN = os.getenv("INSTAGRAM_ACCESS_TOKEN", "").strip()
 IG_USER_ID = os.getenv("INSTAGRAM_ACCOUNT_ID", "").strip()
 META_API_VERSION = os.getenv("META_API_VERSION", "").strip() or "v25.0"
 IMAGE_URL = os.getenv("IMAGE_URL", "").strip()
-
 DEFAULT_HASHTAGS = "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
-
-
-def fail(message: str):
-    raise RuntimeError(message)
-
-
-def require_config():
-    missing = []
-    if not ACCESS_TOKEN:
-        missing.append("INSTAGRAM_ACCESS_TOKEN")
-    if not IG_USER_ID:
-        missing.append("INSTAGRAM_ACCOUNT_ID")
-    if not IMAGE_URL:
-        missing.append("IMAGE_URL")
-
-    if missing:
-        fail("Missing required GitHub Actions value(s): " + ", ".join(missing))
-
-    if not IMAGE_URL.startswith("https://"):
-        fail("IMAGE_URL must be a public HTTPS URL.")
 
 
 def api_url(path: str) -> str:
     return f"https://graph.instagram.com/{META_API_VERSION}/{path.lstrip('/')}"
 
 
-def post(path: str, data: dict) -> dict:
+def api_post(path: str, data: dict) -> dict:
     response = requests.post(api_url(path), data=data, timeout=90)
-
     if not response.ok:
         raise RuntimeError(
             f"Instagram API error {response.status_code}: {response.text}"
         )
-
-    try:
-        return response.json()
-    except ValueError as exc:
-        raise RuntimeError(
-            f"Instagram API returned invalid JSON: {response.text}"
-        ) from exc
+    return response.json()
 
 
-def get(path: str, params: dict) -> dict:
+def api_get(path: str, params: dict) -> dict:
     response = requests.get(api_url(path), params=params, timeout=60)
-
     if not response.ok:
         raise RuntimeError(
             f"Instagram API error {response.status_code}: {response.text}"
         )
-
-    try:
-        return response.json()
-    except ValueError as exc:
-        raise RuntimeError(
-            f"Instagram API returned invalid JSON: {response.text}"
-        ) from exc
+    return response.json()
 
 
 def load_metadata() -> dict:
-    if not LATEST_FILE.exists():
-        fail(f"Generated metadata file not found: {LATEST_FILE}")
-
-    return json.loads(LATEST_FILE.read_text(encoding="utf-8"))
-
-
-def build_caption(metadata: dict) -> str:
-    quote = str(metadata.get("quote", "")).strip()
-    if not quote:
-        fail("Generated quote is empty.")
-
-    hashtags = str(
-        metadata.get("hashtags")
-        or os.getenv("HASHTAGS", DEFAULT_HASHTAGS)
-    ).strip()
-
-    return f"{quote}\n\n{hashtags}".strip()
+    if not LATEST.exists():
+        raise RuntimeError(f"Missing generated metadata: {LATEST}")
+    return json.loads(LATEST.read_text(encoding="utf-8"))
 
 
-def verify_image_url() -> None:
-    """
-    Verify that the URL is publicly reachable and is an image before asking
-    Instagram to fetch it. GitHub raw can occasionally respond with redirects,
-    so allow redirects and verify the final Content-Type.
-    """
+def verify_public_image() -> None:
     response = requests.get(
         IMAGE_URL,
         stream=True,
@@ -106,52 +53,37 @@ def verify_image_url() -> None:
         timeout=30,
         headers={"User-Agent": "quote-automation/1.0"},
     )
+    content_type = (response.headers.get("Content-Type") or "").lower()
+    print(f"Public image HTTP: {response.status_code}")
+    print(f"Public image Content-Type: {content_type}")
+    print(f"Public image final URL: {response.url}")
 
     if not response.ok:
         raise RuntimeError(
-            f"IMAGE_URL is not publicly reachable. "
-            f"HTTP {response.status_code}: {IMAGE_URL}"
+            f"IMAGE_URL is not publicly reachable: HTTP {response.status_code}"
         )
-
-    content_type = (response.headers.get("Content-Type") or "").lower()
-
-    print(f"Image URL final URL: {response.url}")
-    print(f"Image URL Content-Type: {content_type}")
-
-    if not content_type.startswith("image/"):
+    if not content_type.startswith("image/jpeg"):
         raise RuntimeError(
-            f"IMAGE_URL did not return an image. "
-            f"Content-Type={content_type}, URL={response.url}"
+            f"IMAGE_URL must return JPEG. Got Content-Type={content_type}"
         )
 
 
 def wait_until_finished(container_id: str):
     for attempt in range(18):
-        result = get(
+        status = api_get(
             container_id,
-            {
-                "fields": "status_code,status",
-                "access_token": ACCESS_TOKEN,
-            },
+            {"fields": "status_code,status", "access_token": ACCESS_TOKEN},
         )
+        code = status.get("status_code")
+        print(f"Container status [{attempt + 1}/18]: {code} - {status.get('status', '')}")
 
-        status_code = result.get("status_code")
-        status = result.get("status", "")
-
-        print(
-            f"Instagram container [{attempt + 1}/18]: "
-            f"{status_code} - {status}"
-        )
-
-        if status_code == "FINISHED":
+        if code == "FINISHED":
             return
-
-        if status_code in {"ERROR", "EXPIRED"}:
-            fail(f"Instagram media container failed: {result}")
-
+        if code in {"ERROR", "EXPIRED"}:
+            raise RuntimeError(f"Instagram container failed: {status}")
         time.sleep(5)
 
-    fail("Instagram media container did not reach FINISHED status.")
+    raise RuntimeError("Instagram media container did not reach FINISHED status.")
 
 
 def consume_priority_if_needed(metadata: dict):
@@ -160,30 +92,40 @@ def consume_priority_if_needed(metadata: dict):
 
     priority_line = metadata.get("priority_line")
     if not priority_line:
-        print("Priority source detected but priority_line is missing.")
-        return
+        raise RuntimeError("Priority quote was published but priority_line is missing.")
 
     from quote_source import remove_priority_quote
-
     remove_priority_quote(int(priority_line))
-    print("Priority item consumed successfully.")
+    print("Priority item consumed after successful Instagram publication.")
 
 
 def main():
-    require_config()
+    missing = []
+    if not ACCESS_TOKEN:
+        missing.append("INSTAGRAM_ACCESS_TOKEN")
+    if not IG_USER_ID:
+        missing.append("INSTAGRAM_ACCOUNT_ID")
+    if not IMAGE_URL:
+        missing.append("IMAGE_URL")
+    if missing:
+        raise RuntimeError("Missing required value(s): " + ", ".join(missing))
+
+    if not IMAGE_URL.startswith("https://"):
+        raise RuntimeError("IMAGE_URL must be HTTPS.")
 
     metadata = load_metadata()
-    caption = build_caption(metadata)
+    quote = str(metadata.get("quote", "")).strip()
+    hashtags = str(metadata.get("hashtags") or os.getenv("HASHTAGS", DEFAULT_HASHTAGS)).strip()
+    caption = f"{quote}\n\n{hashtags}".strip()
 
-    print(f"Instagram User ID: {IG_USER_ID}")
     print(f"Instagram API version: {META_API_VERSION}")
-    print(f"Image URL: {IMAGE_URL}")
     print(f"Quote source: {metadata.get('quote_source', 'unknown')}")
+    print(f"Image URL: {IMAGE_URL}")
 
-    # Fail early with a useful error if GitHub is not serving the image.
-    verify_image_url()
+    # Instagram fetches image_url itself, so verify the public resource first.
+    verify_public_image()
 
-    container = post(
+    container = api_post(
         f"{IG_USER_ID}/media",
         {
             "image_url": IMAGE_URL,
@@ -191,30 +133,25 @@ def main():
             "access_token": ACCESS_TOKEN,
         },
     )
-
     creation_id = container.get("id")
     if not creation_id:
-        fail(f"No creation ID returned by Instagram: {container}")
+        raise RuntimeError(f"Instagram did not return a container ID: {container}")
 
     print(f"Created media container: {creation_id}")
-
     wait_until_finished(creation_id)
 
-    published = post(
+    published = api_post(
         f"{IG_USER_ID}/media_publish",
         {
             "creation_id": creation_id,
             "access_token": ACCESS_TOKEN,
         },
     )
-
     media_id = published.get("id")
     if not media_id:
-        fail(f"No published media ID returned by Instagram: {published}")
+        raise RuntimeError(f"Instagram did not return a media ID: {published}")
 
-    print(f"Instagram post published successfully. Media ID: {media_id}")
-
-    # Consume priority only after successful publication.
+    print(f"Instagram post published successfully: {media_id}")
     consume_priority_if_needed(metadata)
 
 

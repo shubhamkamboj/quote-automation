@@ -4,31 +4,16 @@ A Python + GitHub Actions automation for a Hindi diary-style Instagram page.
 
 ## Daily flow
 
-The workflow can publish either **one or two posts per day**:
-
-1. Check the optional local `priority.txt` file.
-2. If it contains a non-empty, non-comment line, that **priority content is always published first** on a random diary image.
-3. After the priority post is successfully published, remove only that consumed priority line and commit the change.
-4. Then call the **Gemini API** and generate a fresh Hindi life quote.
-5. Publish that Gemini quote as the **second post of the day**.
-6. If `priority.txt` is empty, missing, or contains only comments, there is no priority post; Gemini generates the day's single post.
-7. Every post uses a random diary template.
-8. Every caption contains the **exact same quote** shown on the image plus 5 relevant/popular hashtags.
-9. If Gemini quote generation, image generation, GitHub, Instagram, or another required workflow step fails, the workflow fails and the configured SMTP alert attempts to email you.
-
-### Daily behavior at a glance
-
-```text
-priority.txt has content
-        ↓
-1️⃣ Priority content → random image → Instagram
-        ↓
-2️⃣ Gemini quote → random image → Instagram
-
-priority.txt is empty
-        ↓
-1️⃣ Gemini quote → random image → Instagram
-```
+1. Read the optional local `priority.txt` file.
+2. If it contains a non-empty, non-comment line, use the **first one** as today's content.
+3. If `priority.txt` is empty, missing, or contains only comments, call the **Gemini API** for a fresh Hindi life quote.
+4. Randomly select one of the 10 diary templates.
+5. Write the selected content onto the template.
+6. Generate a caption containing the **exact same quote** plus 5 relevant/popular hashtags.
+7. Commit the generated image to GitHub.
+8. Publish the image to Instagram.
+9. If a priority line was used, remove that line **only after Instagram confirms successful publication**, then commit the updated `priority.txt`.
+10. If Gemini quote generation, image generation, GitHub, Instagram, or another required workflow step fails, the workflow fails and the configured SMTP alert attempts to email you.
 
 The priority feature is only an **addon**. There is no Google Sheet and no Google API involved.
 
@@ -86,25 +71,28 @@ Lines beginning with `#` are treated as comments and ignored. The starter file a
 ```text
 priority.txt has content
         ↓
-First priority line
+Use first priority line
         ↓
-Priority image → Instagram publish
+Generate diary image
         ↓
-Remove that line only after success
+Publish to Instagram
         ↓
-Gemini generates fresh quote
-        ↓
-Gemini image → Instagram publish
+Success?
+   YES         NO
+    ↓           ↓
+Remove line   Keep line
+    ↓           ↓
+Commit file   Workflow fails
 ```
 
 If `priority.txt` is:
 
-- missing → **no error**, Gemini publishes the day's single post
-- empty → **no error**, Gemini publishes the day's single post
-- comments only → **no error**, Gemini publishes the day's single post
-- contains multiple items → first item is published first; remaining items stay queued for future runs
+- missing → **no error**, Gemini is used
+- empty → **no error**, Gemini is used
+- comments only → **no error**, Gemini is used
+- contains multiple items → first item is used; remaining items stay for future days
 
-A priority line is removed only after its Instagram publication succeeds. If that publication fails, the line remains in the file and the workflow stops, so the Gemini second post is **not** published.
+A priority line is removed only after successful Instagram publication, so a failed publish does not lose the priority content.
 
 ## 3. Gemini quote generation
 
