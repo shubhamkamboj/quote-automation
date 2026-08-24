@@ -9,13 +9,16 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 LATEST_FILE = ROOT / "generated" / "latest.json"
 
-# These names intentionally match the existing GitHub repository secrets.
+# Existing GitHub repository secret names
 ACCESS_TOKEN = os.getenv("INSTAGRAM_ACCESS_TOKEN", "").strip()
 IG_USER_ID = os.getenv("INSTAGRAM_ACCOUNT_ID", "").strip()
 
-# Optional repository variable. If not configured, the API version below is used.
-# Keep this configurable so the code does not depend on a token/API-version secret.
-META_API_VERSION = os.getenv("META_API_VERSION", "v25.0").strip()
+# Optional GitHub repository variable.
+# If META_API_VERSION is not configured, use the default below.
+META_API_VERSION = (
+    os.getenv("META_API_VERSION", "").strip()
+    or "v25.0"
+)
 
 IMAGE_URL = os.getenv("IMAGE_URL", "").strip()
 DEFAULT_HASHTAGS = "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
@@ -46,15 +49,9 @@ def require_config():
     if not IMAGE_URL.startswith("https://"):
         fail("IMAGE_URL must be a public HTTPS URL.")
 
-    if not META_API_VERSION:
-        fail("META_API_VERSION is empty.")
-
 
 def api_url(path: str) -> str:
-    return (
-        f"https://graph.instagram.com/"
-        f"{META_API_VERSION}/{path.lstrip('/')}"
-    )
+    return f"https://graph.instagram.com/{META_API_VERSION}/{path.lstrip('/')}"
 
 
 def post(path: str, data: dict) -> dict:
@@ -66,8 +63,7 @@ def post(path: str, data: dict) -> dict:
 
     if not response.ok:
         raise RuntimeError(
-            f"Instagram API error {response.status_code}: "
-            f"{response.text}"
+            f"Instagram API error {response.status_code}: {response.text}"
         )
 
     try:
@@ -87,8 +83,7 @@ def get(path: str, params: dict) -> dict:
 
     if not response.ok:
         raise RuntimeError(
-            f"Instagram API error {response.status_code}: "
-            f"{response.text}"
+            f"Instagram API error {response.status_code}: {response.text}"
         )
 
     try:
@@ -122,12 +117,10 @@ def build_caption(metadata: dict) -> str:
         or os.getenv("HASHTAGS", DEFAULT_HASHTAGS)
     ).strip()
 
-    # Caption always contains the exact same quote rendered on the image.
     return f"{quote}\n\n{hashtags}".strip()
 
 
 def wait_until_finished(container_id: str):
-    # Meta may need time to fetch/process the public image.
     for attempt in range(18):
         result = get(
             container_id,
@@ -162,10 +155,9 @@ def consume_priority_if_needed(metadata: dict):
 
     priority_line = metadata.get("priority_line")
     if not priority_line:
-        print("Priority quote source detected, but no priority_line was supplied.")
+        print("Priority source detected but priority_line is missing.")
         return
 
-    # Import only after successful Instagram publication.
     from quote_source import remove_priority_quote
 
     remove_priority_quote(int(priority_line))
@@ -179,15 +171,13 @@ def main():
     caption = build_caption(metadata)
 
     print(f"Instagram User ID: {IG_USER_ID}")
-    print(f"API version: {META_API_VERSION}")
+    print(f"Instagram API version: {META_API_VERSION}")
     print(f"Image URL: {IMAGE_URL}")
     print(f"Quote source: {metadata.get('quote_source', 'unknown')}")
 
     # Instagram Login / Instagram User Access Token flow.
-    # Meta documents:
-    #   POST /{ig_user_id}/media
-    #   POST /{ig_user_id}/media_publish
-    # on graph.instagram.com.
+    # Host: graph.instagram.com
+    # Step 1: create media container
     container = post(
         f"{IG_USER_ID}/media",
         {
@@ -206,6 +196,7 @@ def main():
 
     wait_until_finished(creation_id)
 
+    # Step 2: publish the media container
     published = post(
         f"{IG_USER_ID}/media_publish",
         {
@@ -221,8 +212,7 @@ def main():
 
     print(f"Instagram post published successfully. Media ID: {media_id}")
 
-    # IMPORTANT:
-    # Priority content is removed only after the Instagram publish succeeds.
+    # Only consume priority after Instagram confirms publication.
     consume_priority_if_needed(metadata)
 
 
