@@ -218,7 +218,7 @@ def render(quote, template, highlighted_words=None):
 
         cursor_x = cx - draw.textlength(line, font=fnt) / 2
         for segment in segments:
-            fill = (150, 100, 45, 255) if segment.strip() in highlighted_words else (72, 55, 42, 255)
+            fill = (0, 0, 0, 255) if segment.strip() in highlighted_words else (0, 0, 0, 255)
             draw.text((cursor_x, y), segment, font=fnt, fill=fill)
             cursor_x += draw.textlength(segment, font=fnt)
 
