@@ -15,6 +15,9 @@ concurrency:
 
 jobs:
   publish:
+    # Set GitHub Actions Repository Variable STOP_WORKFLOW=true to disable publishing.
+    # Set it to false (or leave it unset) to enable the workflow.
+    if: ${{ vars.STOP_WORKFLOW != 'true' }}
     runs-on: ubuntu-latest
 
     env:
