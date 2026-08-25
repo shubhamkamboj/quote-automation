@@ -16,6 +16,31 @@ PENDING_FILE = ROOT / "data" / "pending_posts.json"
 
 DEFAULT_HASHTAGS = "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes"
 
+# Quote categories used to keep every batch varied.
+QUOTE_CATEGORIES = [
+    "deep_life",
+    "sad_emotional",
+    "motivational",
+    "relationship",
+    "life_reality",
+    "self_respect",
+    "nostalgic",
+    "funny_witty",
+    "hopeful",
+]
+
+CATEGORY_GUIDANCE = {
+    "deep_life": "philosophical life insight, human nature, time, choices, loneliness, growth; should feel layered and thought-provoking",
+    "sad_emotional": "quiet pain, loss, disappointment, distance, unspoken feelings; emotional but not melodramatic",
+    "motivational": "realistic motivation built from struggle, discipline, failure and self-growth; avoid generic success slogans",
+    "relationship": "truths about love, friendship, family, expectations, attachment and emotional boundaries",
+    "life_reality": "hard truths and observations about people, priorities, money, time, change and adulthood",
+    "self_respect": "boundaries, letting go, self-worth and choosing peace without sounding arrogant",
+    "nostalgic": "memories, childhood, old relationships, places, moments and the feeling of time passing",
+    "funny_witty": "light, clever and relatable observations about everyday life or relationships; subtle humour, not childish jokes",
+    "hopeful": "healing, second chances, patience and quiet hope after difficult phases; uplifting but still realistic",
+}
+
 
 def clean(value: str) -> str:
     return " ".join(
@@ -184,6 +209,29 @@ def _extract_json(text: str):
         return json.loads(match.group(0))
 
 
+def _choose_quote_categories(count: int, state: dict) -> list[str]:
+    """Pick different categories for the current batch, avoiding recent repeats when possible."""
+    if count <= 0:
+        return []
+
+    recent_categories = list(
+        state.get(
+            "recent_gemini_categories",
+            [],
+        )
+    )
+
+    # Prefer categories not used in the last few posts, then sample randomly.
+    fresh = [
+        category
+        for category in QUOTE_CATEGORIES
+        if category not in recent_categories[-6:]
+    ]
+
+    pool = fresh if len(fresh) >= count else QUOTE_CATEGORIES[:]
+    return random.SystemRandom().sample(pool, count)
+
+
 def _generate_gemini_batch(count: int) -> list[dict]:
     state = _state()
 
@@ -194,19 +242,36 @@ def _generate_gemini_batch(count: int) -> list[dict]:
         )
     )
 
+    selected_categories = _choose_quote_categories(
+        count,
+        state,
+    )
+
+    category_lines = "\n".join(
+        f"{index + 1}. {category} -> {CATEGORY_GUIDANCE[category]}"
+        for index, category in enumerate(selected_categories)
+    )
+
     recent_text = "\n".join(
         f"- {q}"
         for q in recent[-80:]
     ) or "(none)"
 
     prompt = f"""
-Generate exactly {count} DIFFERENT original Hindi life quotes.
+Generate exactly {count} DIFFERENT original Hindi life thoughts for a premium Instagram quotes page.
+
+IMPORTANT:
+Each post has a FIXED category. Follow the assigned category exactly.
+
+Assigned categories:
+{category_lines}
 
 Return ONLY valid JSON:
 {{
   "posts": [
     {{
-      "quote": "Hindi quote",
+      "category": "one of the assigned category names above",
+      "quote": "Hindi thought",
       "hashtags": [
         "#HindiQuotes",
         "#LifeQuotes",
@@ -218,15 +283,25 @@ Return ONLY valid JSON:
   ]
 }}
 
-Rules:
-- Exactly {count} posts.
-- All quotes must be different from each other.
-- Hindi/Devanagari only.
-- 8 to 22 Hindi words per quote.
-- Emotional, natural, relatable and meaningful.
-- No quotation marks, emojis, numbering, attribution or explanation.
+Core writing style:
+- These must feel like DEEP, OBSERVATIONAL thoughts — not generic motivational quotes.
+- Write something that makes the reader pause, relate personally, or read twice.
+- Focus on human psychology, relationships, silence, time, expectations, loneliness, self-worth, change, regret, attachment, adulthood and the gap between what people show and what they feel.
+- Prefer an original insight or contrast over advice.
+- Avoid clichés, recycled Instagram lines, generic positivity, empty wisdom and obvious one-liners.
+- Do not sound like a textbook, speech or motivational coach.
+- Natural modern Hindi that an Indian Instagram audience can immediately understand.
+- Emotional depth should come from the idea, not from excessive dramatic words.
+- Keep each thought specific enough to feel lived-in and believable.
+- For funny_witty, keep the same intelligent writing quality but add subtle, relatable humour.
+- For sad_emotional, keep it quiet and emotionally honest; do not make it melodramatic.
+- For motivational, make it realistic and earned rather than "you can do anything" style.
+- 12 to 30 Hindi words per quote.
+- Hindi/Devanagari only for the quote.
+- No quotation marks, emojis, numbering, attribution, English words or explanations inside the quote.
 - Exactly 5 hashtags for each quote.
 - Prefer common English hashtags.
+- All {count} quotes must be clearly different from each other and from their assigned categories.
 - Do not repeat or closely paraphrase these recent quotes:
 
 {recent_text}
@@ -254,7 +329,16 @@ Rules:
         )
     )
 
-    for item in posts:
+    for index, item in enumerate(posts):
+        expected_category = selected_categories[index]
+        category = clean(item.get("category"))
+
+        if category != expected_category:
+            raise ValueError(
+                f"Gemini returned wrong category at post {index + 1}: "
+                f"expected {expected_category!r}, got {category!r}"
+            )
+
         quote = clean(item.get("quote"))
 
         if not quote or len(quote.split()) < 4:
@@ -299,6 +383,7 @@ Rules:
 
         accepted.append(
             {
+                "category": category,
                 "quote": quote,
                 "hashtags": " ".join(
                     hashtags[:5]
@@ -318,6 +403,19 @@ Rules:
             for item in accepted
         ]
     )[-200:]
+
+    state["recent_gemini_categories"] = (
+        list(
+            state.get(
+                "recent_gemini_categories",
+                [],
+            )
+        )
+        + [
+            item["category"]
+            for item in accepted
+        ]
+    )[-20:]
 
     state["used_gemini_quote_hashes"] = list(
         used
@@ -374,6 +472,7 @@ def _generate_fallback_batch(
 
     return [
         {
+            "category": "fallback",
             "quote": quote,
             "hashtags": DEFAULT_HASHTAGS,
             "quote_source": "fallback",
@@ -414,6 +513,7 @@ def _ensure_pending_posts():
     if priority_quote:
         pending = [
             {
+                "category": "priority",
                 "quote": priority_quote,
                 "hashtags": DEFAULT_HASHTAGS,
                 "quote_source": "priority",

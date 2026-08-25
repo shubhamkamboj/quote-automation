@@ -153,7 +153,7 @@ def fit(draw, quote, max_width, max_height):
     )
 
 
-def render(quote, template):
+def render(quote, template, highlighted_words=None):
     image = (
         Image.open(template)
         .convert("RGB")
@@ -188,15 +188,41 @@ def render(quote, template):
 
     text_height = bbox[3] - bbox[1]
 
-    draw.multiline_text(
-        (cx, cy),
-        text,
-        font=fnt,
-        anchor="mm",
-        align="center",
-        spacing=18,
-        fill=(72, 55, 42, 255),
-    )
+    # Render quote line-by-line so highlighted words can use a distinct color.
+    highlighted_words = [str(w).strip() for w in (highlighted_words or []) if str(w).strip()]
+
+    def _contains_highlight(line):
+        return any(h in line for h in highlighted_words)
+
+    lines = text.split("\n")
+    line_heights = []
+    for line in lines:
+        bb = draw.textbbox((0, 0), line, font=fnt)
+        line_heights.append(bb[3] - bb[1])
+
+    line_spacing = 18
+    total_h = sum(line_heights) + line_spacing * max(0, len(lines) - 1)
+    y = cy - total_h / 2
+
+    for idx, line in enumerate(lines):
+        bb = draw.textbbox((0, 0), line, font=fnt)
+        line_w = bb[2] - bb[0]
+        x = cx - line_w / 2
+
+        # Preserve simple wrapping while giving matching words a different color.
+        segments = [line]
+        if highlighted_words:
+            import re
+            pattern = "(" + "|".join(re.escape(h) for h in sorted(highlighted_words, key=len, reverse=True)) + ")"
+            segments = [seg for seg in re.split(pattern, line) if seg]
+
+        cursor_x = cx - draw.textlength(line, font=fnt) / 2
+        for segment in segments:
+            fill = (150, 100, 45, 255) if segment.strip() in highlighted_words else (72, 55, 42, 255)
+            draw.text((cursor_x, y), segment, font=fnt, fill=fill)
+            cursor_x += draw.textlength(segment, font=fnt)
+
+        y += line_heights[idx] + line_spacing
 
     divider_y = (
         cy
@@ -239,14 +265,19 @@ def render(quote, template):
 
 
 def main():
-    quote, hashtags, source, priority_line = (
-        get_next_post()
-    )
+    result = get_next_post()
+    quote = result[0]
+    hashtags = result[1]
+    source = result[2]
+    priority_line = result[3]
+    # Newer quote_source versions may return a 5th metadata value.
+    highlighted_words = result[4] if len(result) > 4 else []
 
     template = pick_template()
     image = render(
         quote,
         template,
+        highlighted_words,
     )
 
     now = datetime.now(timezone.utc)
@@ -289,6 +320,7 @@ def main():
         "generated_at_utc": now.isoformat(),
         "quote_source": source,
         "priority_line": priority_line,
+        "highlighted_words": highlighted_words,
     }
 
     (OUT / "latest.json").write_text(
