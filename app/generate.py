@@ -1,4 +1,5 @@
 import json
+import os
 import random
 from datetime import datetime, timezone
 from pathlib import Path
@@ -6,6 +7,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from quote_source import get_next_post
+from image_source import generate_background, use_gemini_image
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "templates"
@@ -265,7 +267,12 @@ def render(quote, template, highlighted_words=None):
 
 
 def main():
-    result = get_next_post()
+    try:
+        content_count = max(1, int(os.getenv("CONTENT_COUNT", "1")))
+    except ValueError as exc:
+        raise RuntimeError("CONTENT_COUNT must be an integer.") from exc
+
+    result = get_next_post(content_count)
     quote = result[0]
     hashtags = result[1]
     source = result[2]
@@ -273,12 +280,29 @@ def main():
     # Newer quote_source versions may return a 5th metadata value.
     highlighted_words = result[4] if len(result) > 4 else []
 
-    template = pick_template()
-    image = render(
-        quote,
-        template,
-        highlighted_words,
-    )
+    if use_gemini_image():
+        template = None
+        source_image = OUT / "gemini-background.jpg"
+        generate_background(
+            quote,
+            source_image,
+        )
+        image = render(
+            quote,
+            source_image,
+            highlighted_words,
+        )
+        image_source = "gemini"
+        template_name = "gemini-generated"
+    else:
+        template = pick_template()
+        image = render(
+            quote,
+            template,
+            highlighted_words,
+        )
+        image_source = "template"
+        template_name = template.name
 
     now = datetime.now(timezone.utc)
     filename = (
@@ -314,7 +338,8 @@ def main():
     metadata = {
         "quote": quote,
         "hashtags": hashtags,
-        "template": template.name,
+        "template": template_name,
+        "image_source": image_source,
         "filename": filename,
         "latest_filename": "latest.jpg",
         "generated_at_utc": now.isoformat(),

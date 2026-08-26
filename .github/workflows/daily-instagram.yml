@@ -15,14 +15,15 @@ concurrency:
 
 jobs:
   publish:
-    # Set GitHub Actions Repository Variable STOP_WORKFLOW=true to disable publishing.
-    # Set it to false (or leave it unset) to enable the workflow.
+    # Repository variable STOP_WORKFLOW=true disables publishing.
     if: ${{ vars.STOP_WORKFLOW != 'true' }}
     runs-on: ubuntu-latest
 
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+      GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL }}
+      USE_GEMINI_IMAGE: ${{ vars.USE_GEMINI_IMAGE }}
 
       INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
       INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
@@ -31,6 +32,10 @@ jobs:
 
       HASHTAGS: ${{ vars.HASHTAGS }}
       AUTO_HASHTAGS: ${{ vars.AUTO_HASHTAGS }}
+
+      ENABLE_IMAGE_POSTS: ${{ vars.ENABLE_IMAGE_POSTS }}
+      IMAGE_POST_COUNT: ${{ vars.IMAGE_POST_COUNT }}
+      REEL_POST_COUNT: ${{ vars.REEL_POST_COUNT }}
 
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -65,27 +70,65 @@ jobs:
           ffmpeg -version
           test -f app/create_reel.py
           test -f app/publish_reel.py
+          test -f app/image_source.py
 
-      - name: Publish 4 photo + reel posts
+      - name: Publish configured image + reel posts
         shell: bash
         run: |
           set -euo pipefail
 
-          for POST_NUMBER in 1 2 3 4; do
-            echo "========================================"
-            echo "Generating post ${POST_NUMBER}/4"
-            echo "========================================"
+          IMAGE_ENABLED="${ENABLE_IMAGE_POSTS:-true}"
+          IMAGE_COUNT="${IMAGE_POST_COUNT:-4}"
+          REEL_COUNT="${REEL_POST_COUNT:-4}"
 
-            if [ "$POST_NUMBER" -eq 1 ]; then
-              export FORCE_GEMINI=false
-            else
-              export FORCE_GEMINI=true
+          if ! [[ "$IMAGE_COUNT" =~ ^[0-9]+$ ]]; then
+            echo "IMAGE_POST_COUNT must be a non-negative integer."
+            exit 1
+          fi
+
+          if ! [[ "$REEL_COUNT" =~ ^[0-9]+$ ]]; then
+            echo "REEL_POST_COUNT must be a non-negative integer."
+            exit 1
+          fi
+
+          if [[ "${IMAGE_ENABLED,,}" != "true" ]]; then
+            IMAGE_COUNT=0
+          fi
+
+          TOTAL_POSTS="$IMAGE_COUNT"
+          if (( REEL_COUNT > TOTAL_POSTS )); then
+            TOTAL_POSTS="$REEL_COUNT"
+          fi
+
+          echo "Image publishing enabled: $IMAGE_ENABLED"
+          echo "Image posts: $IMAGE_COUNT"
+          echo "Reel posts: $REEL_COUNT"
+          echo "Total content items to generate: $TOTAL_POSTS"
+          echo "Gemini image generation: ${USE_GEMINI_IMAGE:-false}"
+
+          if (( TOTAL_POSTS == 0 )); then
+            echo "Nothing is configured to publish. Exiting successfully."
+            exit 0
+          fi
+
+          for POST_NUMBER in $(seq 1 "$TOTAL_POSTS"); do
+            PUBLISH_IMAGE=false
+            PUBLISH_REEL=false
+
+            if (( POST_NUMBER <= IMAGE_COUNT )); then
+              PUBLISH_IMAGE=true
             fi
 
-            # Prepare one post. The first call creates the complete 4-post
-            # batch in data/pending_posts.json. Gemini is normally called
-            # only once per scheduled run; fallback quotes are used if Gemini
-            # is unavailable.
+            if (( POST_NUMBER <= REEL_COUNT )); then
+              PUBLISH_REEL=true
+            fi
+
+            echo "========================================"
+            echo "Generating content ${POST_NUMBER}/${TOTAL_POSTS}"
+            echo "Image: ${PUBLISH_IMAGE} | Reel: ${PUBLISH_REEL}"
+            echo "========================================"
+
+            export CONTENT_COUNT="$TOTAL_POSTS"
             python app/generate.py
 
             FILE=$(python - <<'PY'
@@ -100,6 +143,8 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+            # Keep generated image + metadata in GitHub so the raw URL is
+            # publicly reachable when an Instagram photo post is requested.
             git add -f \
               "generated/$FILE" \
               generated/latest.jpg \
@@ -108,16 +153,16 @@ jobs:
               data/pending_posts.json
 
             git diff --cached --quiet || \
-              git commit -m "chore: generate post ${POST_NUMBER}/4"
+              git commit -m "chore: generate content ${POST_NUMBER}/${TOTAL_POSTS}"
 
             git push
 
-            SHA=$(git rev-parse HEAD)
-            IMAGE_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}"
+            if [[ "$PUBLISH_IMAGE" == "true" ]]; then
+              SHA=$(git rev-parse HEAD)
+              IMAGE_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SHA}/generated/${FILE}"
+              export IMAGE_URL
 
-            export IMAGE_URL
-
-            python - <<'PY'
+              python - <<'PY'
           import os
           import time
           import requests
@@ -133,10 +178,8 @@ jobs:
                       timeout=20,
                       headers={"User-Agent": "quote-automation/1.0"},
                   )
-
                   content_type = (
-                      response.headers.get("Content-Type")
-                      or ""
+                      response.headers.get("Content-Type") or ""
                   ).lower()
 
                   print(
@@ -145,12 +188,9 @@ jobs:
                       f"Content-Type={content_type}"
                   )
 
-                  if (
-                      response.ok
-                      and (
-                          content_type.startswith("image/jpeg")
-                          or content_type.startswith("application/octet-stream")
-                      )
+                  if response.ok and (
+                      content_type.startswith("image/jpeg")
+                      or content_type.startswith("application/octet-stream")
                   ):
                       print("Image is publicly available.")
                       break
@@ -159,20 +199,21 @@ jobs:
                   print(f"Attempt {attempt + 1} failed: {exc}")
 
               time.sleep(5)
-
           else:
               raise SystemExit(
                   "Generated image was not publicly available."
               )
           PY
 
-            echo "Publishing photo..."
-            python app/publish_instagram.py
+              echo "Publishing photo..."
+              python app/publish_instagram.py
+            fi
 
-            echo "Creating reel..."
-            python app/create_reel.py
+            if [[ "$PUBLISH_REEL" == "true" ]]; then
+              echo "Creating reel..."
+              python app/create_reel.py
 
-            REEL_FILE=$(python - <<'PY'
+              REEL_FILE=$(python - <<'PY'
           import json
           with open("generated/latest.json", encoding="utf-8") as f:
               data = json.load(f)
@@ -181,25 +222,24 @@ jobs:
                   raise SystemExit("reel_filename missing from latest.json")
               print(reel)
           PY
-            )
+              )
 
-            echo "Generated reel: $REEL_FILE"
+              echo "Generated reel: $REEL_FILE"
 
-            git add -f \
-              "generated/$REEL_FILE" \
-              generated/latest.json
+              git add -f \
+                "generated/$REEL_FILE" \
+                generated/latest.json
 
-            git diff --cached --quiet || \
-              git commit -m "chore: generate reel ${POST_NUMBER}/4"
+              git diff --cached --quiet || \
+                git commit -m "chore: generate reel ${POST_NUMBER}/${TOTAL_POSTS}"
 
-            git push
+              git push
 
-            REEL_SHA=$(git rev-parse HEAD)
-            REEL_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${REEL_SHA}/generated/${REEL_FILE}"
+              REEL_SHA=$(git rev-parse HEAD)
+              REEL_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${REEL_SHA}/generated/${REEL_FILE}"
+              export REEL_URL
 
-            export REEL_URL
-
-            python - <<'PY'
+              python - <<'PY'
           import os
           import time
           import requests
@@ -217,8 +257,7 @@ jobs:
                   )
 
                   content_type = (
-                      response.headers.get("Content-Type")
-                      or ""
+                      response.headers.get("Content-Type") or ""
                   ).lower()
 
                   print(
@@ -227,29 +266,26 @@ jobs:
                       f"Content-Type={content_type}"
                   )
 
-                  # GitHub Raw can serve an MP4 as application/octet-stream.
-                  # The important check is that the file is publicly reachable.
                   if response.ok:
                       print("Reel video is publicly available.")
                       break
 
               except Exception as exc:
-                  print(
-                      f"Reel attempt {attempt + 1} failed: {exc}"
-                  )
+                  print(f"Reel attempt {attempt + 1} failed: {exc}")
 
               time.sleep(5)
-
           else:
               raise SystemExit(
                   "Generated reel was not publicly available."
               )
           PY
 
-            echo "Publishing reel..."
-            python app/publish_reel.py
+              echo "Publishing reel..."
+              python app/publish_reel.py
+            fi
 
-            # Consume priority/fallback only after BOTH photo and reel succeed.
+            # Consume priority/fallback only after every requested publication
+            # for this content item succeeds.
             SOURCE=$(python - <<'PY'
           import json
           with open("generated/latest.json", encoding="utf-8") as f:
@@ -257,8 +293,8 @@ jobs:
           PY
             )
 
-            if [ "$SOURCE" = "priority" ]; then
-              if [ -f app/consume_priority.py ]; then
+            if [[ "$SOURCE" == "priority" ]]; then
+              if [[ -f app/consume_priority.py ]]; then
                 python app/consume_priority.py
               fi
 
@@ -268,7 +304,7 @@ jobs:
                 git push
               fi
 
-            elif [ "$SOURCE" = "fallback" ]; then
+            elif [[ "$SOURCE" == "fallback" ]]; then
               python app/consume_fallback.py
 
               if ! git diff --quiet -- data/fallback_quotes.txt; then
@@ -278,7 +314,7 @@ jobs:
               fi
             fi
 
-            echo "Post + reel ${POST_NUMBER}/4 published successfully."
+            echo "Content ${POST_NUMBER}/${TOTAL_POSTS} completed."
           done
 
       - name: Send failure email

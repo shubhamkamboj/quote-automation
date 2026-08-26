@@ -224,3 +224,79 @@ The generated image appears in:
 ```text
 generated/quote-YYYYMMDD-HHMMSS.jpg
 ```
+
+
+## Dynamic publishing controls
+
+The workflow is now controlled through **GitHub Repository Variables**:
+
+| Variable | Example | Meaning |
+|---|---:|---|
+| `ENABLE_IMAGE_POSTS` | `true` | `true` publishes image posts; `false` skips image publishing |
+| `IMAGE_POST_COUNT` | `2` | Number of image posts to publish |
+| `REEL_POST_COUNT` | `3` | Number of Reel posts to publish |
+| `USE_GEMINI_IMAGE` | `true` | `true` generates the visual background with Gemini; `false` uses `templates/` |
+| `GEMINI_IMAGE_MODEL` | `gemini-3.1-flash-image` | Gemini image model |
+
+### How image/reel counts work
+
+The automation generates `max(IMAGE_POST_COUNT, REEL_POST_COUNT)` content items.
+
+For example:
+
+```text
+ENABLE_IMAGE_POSTS=true
+IMAGE_POST_COUNT=2
+REEL_POST_COUNT=4
+```
+
+Result:
+
+```text
+Content 1 → Image + Reel
+Content 2 → Image + Reel
+Content 3 → Reel only
+Content 4 → Reel only
+```
+
+If:
+
+```text
+ENABLE_IMAGE_POSTS=false
+IMAGE_POST_COUNT=4
+REEL_POST_COUNT=3
+```
+
+Result:
+
+```text
+3 Reel posts
+0 Image posts
+```
+
+The image is still generated locally because the Reel is created from that image; it is simply **not published as an Instagram photo**.
+
+### Gemini-generated images
+
+When `USE_GEMINI_IMAGE=true`, the template folder is not used. Gemini generates a fresh vertical visual background for each content item. The exact Hindi quote is then rendered on top by Pillow so the text in the published image remains deterministic and matches the caption exactly.
+
+`GEMINI_IMAGE_MODEL` defaults to:
+
+```text
+gemini-3.1-flash-image
+```
+
+This is separate from `GEMINI_MODEL`, which continues to control quote generation.
+
+### Recommended GitHub Repository Variables
+
+```text
+ENABLE_IMAGE_POSTS=true
+IMAGE_POST_COUNT=2
+REEL_POST_COUNT=2
+USE_GEMINI_IMAGE=false
+GEMINI_IMAGE_MODEL=gemini-3.1-flash-image
+```
+
+Change only the variables in GitHub; no workflow code change is required.
+

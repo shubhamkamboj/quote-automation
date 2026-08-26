@@ -482,7 +482,7 @@ def _generate_fallback_batch(
     ]
 
 
-def _ensure_pending_posts():
+def _ensure_pending_posts(count: int):
     pending = _pending()
     if pending:
         return
@@ -491,10 +491,12 @@ def _ensure_pending_posts():
         get_priority_quote()
     )
 
-    # One Gemini request per run:
-    # priority present -> 3 Gemini posts
-    # priority absent  -> 4 Gemini posts
-    gemini_count = 3 if priority_quote else 4
+    if count <= 0:
+        raise RuntimeError("CONTENT_COUNT must be greater than zero.")
+
+    # One Gemini request per run. The priority item, when present, occupies
+    # one slot inside the requested batch size.
+    gemini_count = max(0, count - 1) if priority_quote else count
 
     try:
         generated = _generate_gemini_batch(
@@ -526,11 +528,11 @@ def _ensure_pending_posts():
     _save_pending(pending)
 
 
-def get_next_post():
+def get_next_post(batch_size: int = 1):
     """
     Prepare the complete 4-post batch once and then return one post at a time.
     """
-    _ensure_pending_posts()
+    _ensure_pending_posts(batch_size)
 
     pending = _pending()
     if not pending:
