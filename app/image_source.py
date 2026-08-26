@@ -17,11 +17,20 @@ def _bool_env(name: str, default: bool = False) -> bool:
     return value in {"1", "true", "yes", "y", "on"}
 
 
+_CLIENT = None
+
+
 def _client() -> genai.Client:
-    key = os.getenv("GEMINI_API_KEY", "").strip()
-    if not key:
-        raise RuntimeError("GEMINI_API_KEY is not configured.")
-    return genai.Client(api_key=key)
+    global _CLIENT
+
+    if _CLIENT is None:
+        key = os.getenv("GEMINI_API_KEY", "").strip()
+        if not key:
+            raise RuntimeError("GEMINI_API_KEY is not configured.")
+
+        _CLIENT = genai.Client(api_key=key)
+
+    return _CLIENT
 
 
 def generate_background(quote: str, output_path: Path) -> Path:
@@ -61,10 +70,31 @@ Visual direction:
 - do not render the Hindi quote inside the image
 """.strip()
 
-    response = _client().models.generate_content(
-        model=model,
-        contents=prompt,
-    )
+    import time
+
+    last_error = None
+
+    for attempt in range(3):
+        try:
+            response = _client().models.generate_content(
+                model=model,
+                contents=prompt,
+            )
+            break
+        except Exception as exc:
+            last_error = exc
+
+            # Re-create the client on the next attempt in case the underlying
+            # HTTP client was unexpectedly closed.
+            global _CLIENT
+            _CLIENT = None
+
+            if attempt == 2:
+                raise RuntimeError(
+                    f"Gemini image generation failed after 3 attempts: {exc}"
+                ) from exc
+
+            time.sleep(2 ** attempt)
 
     generated = None
     for part in response.parts:
