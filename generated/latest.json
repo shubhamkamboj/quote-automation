@@ -1,13 +1,15 @@
 {
-  "quote": "जो दिल को सुकून दे, वही जिंदगी में सबसे कीमती है।",
+  "quote": "कुछ जवाब समय देता है, इसलिए हर सवाल का उत्तर तुरंत मत खोजो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-04.jpg",
-  "filename": "quote-20260826-141658-022871.jpg",
+  "template": "template-05.jpg",
+  "image_source": "template",
+  "filename": "quote-20260826-171317-548138.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-08-26T14:16:58.022871+00:00",
+  "generated_at_utc": "2026-08-26T17:13:17.548138+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
-  "reel_filename": "reel-20260826-141658-022871.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_count": 10,
+  "template_rotation_index": 4,
+  "next_template_index": 5
 }
