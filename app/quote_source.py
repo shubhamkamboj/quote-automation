@@ -296,7 +296,12 @@ Core writing style:
 - For funny_witty, keep the same intelligent writing quality but add subtle, relatable humour.
 - For sad_emotional, keep it quiet and emotionally honest; do not make it melodramatic.
 - For motivational, make it realistic and earned rather than "you can do anything" style.
-- 12 to 30 Hindi words per quote.
+- 28 to 45 Hindi words per quote.
+- Each quote should naturally span approximately 2 to 4 lines when rendered on the Instagram image.
+- Do NOT write short one-line quotes, slogans, taglines, captions, aphorisms, or punchlines.
+- Every quote must express a complete, meaningful thought with emotional depth, observation, contrast, realization, or lived experience.
+- Prefer 2 connected sentences when that helps express the idea naturally.
+- The quote should feel like a realization someone reached after experiencing life, relationships, silence, disappointment, change, attachment, or growing up.
 - Hindi/Devanagari only for the quote.
 - No quotation marks, emojis, numbering, attribution, English words or explanations inside the quote.
 - Exactly 5 hashtags for each quote.
