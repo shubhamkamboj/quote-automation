@@ -1,17 +1,15 @@
 {
-  "quote": "जो साथ कठिन समय में रहे, उसकी कद्र आसान दिनों में भी करो।",
+  "quote": "जो तुम्हें समझना चाहता है, वह तुम्हारी खामोशी भी समझेगा।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260827-135559-372140.jpg",
+  "filename": "quote-20260827-135740-431154.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-08-27T13:55:59.372140+00:00",
+  "generated_at_utc": "2026-08-27T13:57:40.431154+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260827-135559-372140.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
