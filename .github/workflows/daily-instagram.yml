@@ -2,7 +2,7 @@ name: Daily Hindi Quote
 
 on:
   schedule:
-    - cron: "0 6,14,19 * * *"
+    - cron: "30 0,8,13 * * *"
       timezone: "Asia/Kolkata"
   workflow_dispatch:
 
