@@ -1,17 +1,15 @@
 {
-  "quote": "जो तुम्हें समझना चाहता है, वह तुम्हारी खामोशी भी समझेगा।",
+  "quote": "तुम्हें हर जगह फिट होने की जरूरत नहीं, सही जगह मिलने की जरूरत है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260827-135740-431154.jpg",
+  "filename": "quote-20260827-135838-004118.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-08-27T13:57:40.431154+00:00",
+  "generated_at_utc": "2026-08-27T13:58:38.004118+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260827-135740-431154.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
