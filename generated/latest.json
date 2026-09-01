@@ -1,17 +1,15 @@
 {
-  "quote": "हर बात का जवाब देना जरूरी नहीं होता।",
+  "quote": "अपनी जिंदगी को दूसरों की मंजूरी से मत मापो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260901-082743-526807.jpg",
+  "filename": "quote-20260901-213838-146575.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-01T08:27:43.526807+00:00",
+  "generated_at_utc": "2026-09-01T21:38:38.146575+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260901-082743-526807.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
