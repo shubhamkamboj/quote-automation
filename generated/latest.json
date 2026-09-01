@@ -1,17 +1,15 @@
 {
-  "quote": "अपनी जिंदगी को दूसरों की मंजूरी से मत मापो।",
+  "quote": "जिसे बदल नहीं सकते, उसे स्वीकार करके आगे बढ़ना सीखो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260901-213838-146575.jpg",
+  "filename": "quote-20260901-213935-557844.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-01T21:38:38.146575+00:00",
+  "generated_at_utc": "2026-09-01T21:39:35.557844+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260901-213838-146575.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
