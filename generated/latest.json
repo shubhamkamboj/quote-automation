@@ -1,17 +1,15 @@
 {
-  "quote": "किसी की अच्छाई को उसकी मजबूरी मत समझना,",
+  "quote": "कुछ चीज़ें छोड़ देने से भी इंसान बहुत कुछ पा लेता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260904-140105-673324.jpg",
+  "filename": "quote-20260904-211755-421779.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-04T14:01:05.673324+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-04T21:17:55.421779+00:00",
+  "quote_source": "priority",
+  "priority_line": 1,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260904-140105-673324.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
