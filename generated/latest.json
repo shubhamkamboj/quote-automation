@@ -1,17 +1,15 @@
 {
-  "quote": "सच्चा रिश्ता वही है जहाँ दिखावे से ज्यादा अपनापन हो।",
+  "quote": "ज़िंदगी में हर चीज़ पाने की ज़िद मत करो,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-07.jpg",
+  "template": "template-08.jpg",
   "image_source": "template",
-  "filename": "quote-20260902-214139-225522.jpg",
+  "filename": "quote-20260904-135801-742301.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-02T21:41:39.225522+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-04T13:58:01.742301+00:00",
+  "quote_source": "priority",
+  "priority_line": 1,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 6,
-  "next_template_index": 7,
-  "reel_filename": "reel-20260902-214139-225522.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 7,
+  "next_template_index": 8
 }
