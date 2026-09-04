@@ -1,17 +1,15 @@
 {
-  "quote": "कुछ चीज़ें छोड़ देने से भी इंसान बहुत कुछ पा लेता है।",
+  "quote": "असली जीत तब है जब तुम कल से बेहतर इंसान बनो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260904-211755-421779.jpg",
+  "filename": "quote-20260904-211853-354661.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-04T21:17:55.421779+00:00",
-  "quote_source": "priority",
-  "priority_line": 1,
+  "generated_at_utc": "2026-09-04T21:18:53.354661+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260904-211755-421779.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
