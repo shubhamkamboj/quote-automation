@@ -1,17 +1,15 @@
 {
-  "quote": "अपनी मेहनत पर भरोसा रखो,",
+  "quote": "जो इंसान तुम्हारी खामोशी समझ ले,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20260905-114546-407933.jpg",
+  "filename": "quote-20260905-205902-359976.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-05T11:45:46.407933+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-05T20:59:02.359976+00:00",
+  "quote_source": "priority",
+  "priority_line": 3,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20260905-114546-407933.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
