@@ -1,17 +1,15 @@
 {
-  "quote": "कभी-कभी भगवान हमें भीड़ से दूर करके खुद को समझने का समय देता है।",
+  "quote": "बस इंतज़ार करने वाले के पास धैर्य और चलते रहने वाले के पास हिम्मत होनी चाहिए।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20260905-073218-283826.jpg",
+  "filename": "quote-20260905-114247-395168.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-05T07:32:18.283826+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-05T11:42:47.395168+00:00",
+  "quote_source": "priority",
+  "priority_line": 2,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20260905-073218-283826.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
