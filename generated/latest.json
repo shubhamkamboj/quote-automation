@@ -1,17 +1,15 @@
 {
-  "quote": "बस इंतज़ार करने वाले के पास धैर्य और चलते रहने वाले के पास हिम्मत होनी चाहिए।",
+  "quote": "ऊँचाई वही है जहाँ पहुँचकर भी इंसान दूसरों को सम्मान दे।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260905-114247-395168.jpg",
+  "filename": "quote-20260905-114349-509537.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-05T11:42:47.395168+00:00",
-  "quote_source": "priority",
-  "priority_line": 2,
+  "generated_at_utc": "2026-09-05T11:43:49.509537+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260905-114247-395168.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
