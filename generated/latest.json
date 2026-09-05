@@ -1,17 +1,15 @@
 {
-  "quote": "जो इंसान तुम्हारी खामोशी समझ ले,",
+  "quote": "वक़्त बदलने में देर नहीं लगती,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-04.jpg",
+  "template": "template-05.jpg",
   "image_source": "template",
-  "filename": "quote-20260905-205902-359976.jpg",
+  "filename": "quote-20260905-205948-427798.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-05T20:59:02.359976+00:00",
-  "quote_source": "priority",
-  "priority_line": 3,
+  "generated_at_utc": "2026-09-05T20:59:48.427798+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 3,
-  "next_template_index": 4,
-  "reel_filename": "reel-20260905-205902-359976.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 4,
+  "next_template_index": 5
 }
