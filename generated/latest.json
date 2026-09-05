@@ -1,17 +1,15 @@
 {
-  "quote": "वक़्त सबका आता है,",
+  "quote": "अच्छे कर्म करते रहो,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20260905-072912-040001.jpg",
+  "filename": "quote-20260905-073008-699415.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-05T07:29:12.040001+00:00",
-  "quote_source": "priority",
-  "priority_line": 2,
+  "generated_at_utc": "2026-09-05T07:30:08.699415+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20260905-072912-040001.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
