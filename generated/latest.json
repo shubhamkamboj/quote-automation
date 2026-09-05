@@ -1,17 +1,15 @@
 {
-  "quote": "हो सकता है कल उसी चीज़ से दूर होना तुम्हारे लिए वरदान साबित हो।",
+  "quote": "वक़्त सबका आता है,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260904-212103-512414.jpg",
+  "filename": "quote-20260905-072912-040001.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-04T21:21:03.512414+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-05T07:29:12.040001+00:00",
+  "quote_source": "priority",
+  "priority_line": 2,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260904-212103-512414.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
