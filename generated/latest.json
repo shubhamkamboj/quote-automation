@@ -1,17 +1,15 @@
 {
-  "quote": "लेकिन तुम्हें अपनी गलतियों से सीखकर आगे बढ़ना है।",
+  "quote": "रिश्ते शब्दों से नहीं,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260906-074559-465474.jpg",
+  "filename": "quote-20260906-120029-601224.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-06T07:45:59.465474+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-06T12:00:29.601224+00:00",
+  "quote_source": "priority",
+  "priority_line": 4,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260906-074559-465474.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
