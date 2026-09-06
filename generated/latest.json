@@ -1,17 +1,15 @@
 {
-  "quote": "उसे अपनी कहानी सुनाने की ज़रूरत नहीं पड़ती।",
+  "quote": "सिर्फ उसके कर्म और लोगों के दिलों में छोड़ी हुई यादें रह जाती हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-08.jpg",
+  "template": "template-09.jpg",
   "image_source": "template",
-  "filename": "quote-20260906-074307-614768.jpg",
+  "filename": "quote-20260906-074405-136315.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-06T07:43:07.614768+00:00",
-  "quote_source": "priority",
-  "priority_line": 3,
+  "generated_at_utc": "2026-09-06T07:44:05.136315+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 7,
-  "next_template_index": 8,
-  "reel_filename": "reel-20260906-074307-614768.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 8,
+  "next_template_index": 9
 }
