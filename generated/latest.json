@@ -1,17 +1,15 @@
 {
-  "quote": "रिश्ते शब्दों से नहीं,",
+  "quote": "उसके पीछे अपनी जिंदगी मत लगाना; अपनी कीमत पहचानना भी आत्मसम्मान है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260906-120029-601224.jpg",
+  "filename": "quote-20260906-120119-825172.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-06T12:00:29.601224+00:00",
-  "quote_source": "priority",
-  "priority_line": 4,
+  "generated_at_utc": "2026-09-06T12:01:19.825172+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260906-120029-601224.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
