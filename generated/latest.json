@@ -1,17 +1,15 @@
 {
-  "quote": "क्योंकि शुरुआत करने के लिए हमेशा एक छोटा-सा कदम काफी होता है।",
+  "quote": "मुश्किल वक़्त में निभाए गए साथ से मजबूत होते हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260906-120337-754927.jpg",
+  "filename": "quote-20260906-210757-916587.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-06T12:03:37.754927+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-06T21:07:57.916587+00:00",
+  "quote_source": "priority",
+  "priority_line": 4,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260906-120337-754927.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
