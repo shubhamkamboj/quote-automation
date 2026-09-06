@@ -1,17 +1,15 @@
 {
-  "quote": "मुश्किल वक़्त में निभाए गए साथ से मजबूत होते हैं।",
+  "quote": "वक़्त इंसान को वहीं खड़ा कर देता है जहाँ उसने कभी किसी और को देखा था।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20260906-210757-916587.jpg",
+  "filename": "quote-20260906-210902-449413.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-06T21:07:57.916587+00:00",
-  "quote_source": "priority",
-  "priority_line": 4,
+  "generated_at_utc": "2026-09-06T21:09:02.449413+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20260906-210757-916587.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
