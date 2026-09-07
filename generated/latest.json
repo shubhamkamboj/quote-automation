@@ -1,17 +1,15 @@
 {
-  "quote": "जिस दिन तुम्हें खुद पर भरोसा हो गया,",
+  "quote": "ज़िंदगी में हर चीज़ पाने की ज़िद मत करो,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260907-080156-910378.jpg",
+  "filename": "quote-20260907-080249-362873.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-07T08:01:56.910378+00:00",
-  "quote_source": "priority",
-  "priority_line": 5,
+  "generated_at_utc": "2026-09-07T08:02:49.362873+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260907-080156-910378.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
