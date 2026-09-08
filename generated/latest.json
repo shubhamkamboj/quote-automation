@@ -1,17 +1,15 @@
 {
-  "quote": "हम उसे छोटी-छोटी बातों की चिंता में जीना भूल जाते हैं।",
+  "quote": "लेकिन अच्छे कर्मों की पहचान कभी पुरानी नहीं होती।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260908-124155-854107.jpg",
+  "filename": "quote-20260908-124250-933973.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-08T12:41:55.854107+00:00",
-  "quote_source": "priority",
-  "priority_line": 6,
+  "generated_at_utc": "2026-09-08T12:42:50.933973+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260908-124155-854107.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
