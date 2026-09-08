@@ -1,17 +1,15 @@
 {
-  "quote": "किसी को हराकर बड़ी जीत नहीं मिलती,",
+  "quote": "उनका होना जिंदगी की सबसे बड़ी दौलतों में से एक है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20260908-213931-810427.jpg",
+  "filename": "quote-20260908-214041-686153.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-08T21:39:31.810427+00:00",
-  "quote_source": "priority",
-  "priority_line": 7,
+  "generated_at_utc": "2026-09-08T21:40:41.686153+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20260908-213931-810427.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
