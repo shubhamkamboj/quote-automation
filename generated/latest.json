@@ -1,17 +1,15 @@
 {
-  "quote": "🤐 अपनों की खामोशी भी कभी-कभी बहुत कुछ कह जाती है।",
+  "quote": "इसलिए अच्छे दिनों में घमंड और बुरे दिनों में निराशा मत करना।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-08.jpg",
+  "template": "template-09.jpg",
   "image_source": "template",
-  "filename": "quote-20260909-080019-363952.jpg",
+  "filename": "quote-20260909-125032-529964.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-09T08:00:19.363952+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-09T12:50:32.529964+00:00",
+  "quote_source": "priority",
+  "priority_line": 8,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 7,
-  "next_template_index": 8,
-  "reel_filename": "reel-20260909-080019-363952.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 8,
+  "next_template_index": 9
 }
