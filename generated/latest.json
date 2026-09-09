@@ -1,17 +1,15 @@
 {
-  "quote": "वक़्त बदलने में देर नहीं लगती,",
+  "quote": "💔 जिसके लिए सब छोड़ा, उसने हमें ही छोड़ दिया।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260909-075737-282988.jpg",
+  "filename": "quote-20260909-075837-162066.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-09T07:57:37.282988+00:00",
-  "quote_source": "priority",
-  "priority_line": 8,
+  "generated_at_utc": "2026-09-09T07:58:37.162066+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260909-075737-282988.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
