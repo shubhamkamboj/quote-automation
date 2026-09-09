@@ -1,17 +1,15 @@
 {
-  "quote": "जिस घर में सम्मान बचा रहता है,",
+  "quote": "असली जीत तब है जब तुम कल से बेहतर इंसान बनो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260908-214304-717667.jpg",
+  "filename": "quote-20260909-011608-102203.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-08T21:43:04.717667+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-09T01:16:08.102203+00:00",
+  "quote_source": "priority",
+  "priority_line": 7,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20260908-214304-717667.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
