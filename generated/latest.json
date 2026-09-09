@@ -1,17 +1,15 @@
 {
-  "quote": "असली जीत तब है जब तुम कल से बेहतर इंसान बनो।",
+  "quote": "💔 अपनों के बदलने का दर्द, मौसम बदलने से ज्यादा होता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260909-011608-102203.jpg",
+  "filename": "quote-20260909-011710-134040.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-09T01:16:08.102203+00:00",
-  "quote_source": "priority",
-  "priority_line": 7,
+  "generated_at_utc": "2026-09-09T01:17:10.134040+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260909-011608-102203.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
