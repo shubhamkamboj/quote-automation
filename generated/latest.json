@@ -1,17 +1,15 @@
 {
-  "quote": "🖤 कभी जो सबसे खास था, आज वही सबसे अनजान है।",
+  "quote": "🚪 मेरी जिंदगी से निकलने वालों के लिए दरवाजा हमेशा खुला है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260909-125134-678253.jpg",
+  "filename": "quote-20260909-125222-770403.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-09T12:51:34.678253+00:00",
+  "generated_at_utc": "2026-09-09T12:52:22.770403+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260909-125134-678253.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
