@@ -1,17 +1,15 @@
 {
-  "quote": "और कुछ लोग वही सबक जिंदगी भर याद दिलाते रहते हैं।",
+  "quote": "⏳ अपने वक्त का इंतजार मत करो, अपना वक्त खुद बनाओ।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260910-212859-863976.jpg",
+  "filename": "quote-20260910-212958-877076.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-10T21:28:59.863976+00:00",
-  "quote_source": "priority",
-  "priority_line": 10,
+  "generated_at_utc": "2026-09-10T21:29:58.877076+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260910-212859-863976.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
