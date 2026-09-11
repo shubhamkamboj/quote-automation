@@ -1,17 +1,15 @@
 {
-  "quote": "वह तब मिलता है जब दिल में किसी के लिए बुरा नहीं होता।",
+  "quote": "🥀 जिसे अपना समझा, उसी ने सबसे ज्यादा पराया कर दिया।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20260911-124053-714195.jpg",
+  "filename": "quote-20260911-124147-064154.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-11T12:40:53.714195+00:00",
-  "quote_source": "priority",
-  "priority_line": 11,
+  "generated_at_utc": "2026-09-11T12:41:47.064154+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20260911-124053-714195.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
