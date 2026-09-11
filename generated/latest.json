@@ -1,17 +1,15 @@
 {
-  "quote": "🔥 हम गिरकर भी उठना जानते हैं, इसलिए हमें हराना आसान नहीं।",
+  "quote": "🛤️ रास्ते मुश्किल हैं, इसका मतलब यह नहीं कि मंजिल गलत है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260911-075313-742368.jpg",
+  "filename": "quote-20260911-075410-347083.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-11T07:53:13.742368+00:00",
+  "generated_at_utc": "2026-09-11T07:54:10.347083+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260911-075313-742368.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
