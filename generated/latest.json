@@ -1,17 +1,15 @@
 {
-  "quote": "यह ज़रूरी नहीं; कभी-कभी मुस्कान दर्द छुपाने का सबसे आसान तरीका होती है।",
+  "quote": "🥀 तुम बदले नहीं, बस तुम्हारी असलियत सामने आ गई।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260912-074458-320206.jpg",
+  "filename": "quote-20260912-074648-263127.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-12T07:44:58.320206+00:00",
-  "quote_source": "priority",
-  "priority_line": 12,
+  "generated_at_utc": "2026-09-12T07:46:48.263127+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260912-074458-320206.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
