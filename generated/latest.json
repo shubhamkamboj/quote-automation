@@ -1,17 +1,15 @@
 {
-  "quote": "कभी-कभी भगवान रास्ता साफ करने के लिए कुछ चीज़ें हमसे दूर कर देता है।",
+  "quote": "🥀 कभी-कभी इंसान नहीं, उसकी उम्मीदें मरती हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20260912-211710-208856.jpg",
+  "filename": "quote-20260912-211824-083131.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-12T21:17:10.208856+00:00",
-  "quote_source": "priority",
-  "priority_line": 13,
+  "generated_at_utc": "2026-09-12T21:18:24.083131+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20260912-211710-208856.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
