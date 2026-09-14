@@ -1,17 +1,15 @@
 {
-  "quote": "अपनों की कीमत तब मत समझना,",
+  "quote": "🤫 मेरी खामोशी मेरी कमजोरी नहीं, मेरा सुकून है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260914-083855-870207.jpg",
+  "filename": "quote-20260914-083959-031701.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-14T08:38:55.870207+00:00",
-  "quote_source": "priority",
-  "priority_line": 15,
+  "generated_at_utc": "2026-09-14T08:39:59.031701+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260914-083855-870207.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
