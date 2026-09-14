@@ -1,17 +1,15 @@
 {
-  "quote": "जब वे दूर चले जाएँ; उनकी मौजूदगी में ही उनका सम्मान करना सीखो।",
+  "quote": "🏠 जिस घर में अपनापन न हो, वहां दीवारें भी अजनबी लगती हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260914-221950-855878.jpg",
+  "filename": "quote-20260914-222051-926494.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-14T22:19:50.855878+00:00",
-  "quote_source": "priority",
-  "priority_line": 15,
+  "generated_at_utc": "2026-09-14T22:20:51.926494+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260914-221950-855878.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
