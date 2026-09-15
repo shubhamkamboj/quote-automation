@@ -1,17 +1,15 @@
 {
-  "quote": "कुछ जवाब समय को देने दो, वह तुमसे बेहतर समझाता है।",
+  "quote": "🙂 हम हंसते रहे ताकि कोई हमारे अंदर का दर्द न पढ़ सके।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20260915-215743-370566.jpg",
+  "filename": "quote-20260915-215935-013945.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-15T21:57:43.370566+00:00",
-  "quote_source": "priority",
-  "priority_line": 16,
+  "generated_at_utc": "2026-09-15T21:59:35.013945+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20260915-215743-370566.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
