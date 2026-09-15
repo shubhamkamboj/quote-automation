@@ -1,17 +1,15 @@
 {
-  "quote": "💪 गिरना जरूरी है, तभी उठने की कीमत समझ आती है।",
+  "quote": "🚫 जो तुम्हें रोक रहा है, अक्सर वही तुम्हारा डर होता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260915-082933-238545.jpg",
+  "filename": "quote-20260915-083032-259125.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-15T08:29:33.238545+00:00",
+  "generated_at_utc": "2026-09-15T08:30:32.259125+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260915-082933-238545.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
