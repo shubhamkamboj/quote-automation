@@ -1,17 +1,15 @@
 {
-  "quote": "💔 दर्द तब हुआ जब पता चला कि हम अकेले ही रिश्ते निभा रहे थे।",
+  "quote": "उसे बार-बार परीक्षा में मत डालना; सच्चे लोग बार-बार नहीं मिलते।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260916-082449-018585.jpg",
+  "filename": "quote-20260916-215720-217777.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-16T08:24:49.018585+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-16T21:57:20.217777+00:00",
+  "quote_source": "priority",
+  "priority_line": 17,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260916-082449-018585.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
