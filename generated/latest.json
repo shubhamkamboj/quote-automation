@@ -1,17 +1,15 @@
 {
-  "quote": "वे हमें उस इंसान में बदलने आती हैं जो मंज़िल के लायक हो।",
+  "quote": "🚶‍♂️ जो अकेले चलने की हिम्मत रखता है, वही भीड़ से अलग पहचान बनाता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20260917-215710-886586.jpg",
+  "filename": "quote-20260917-215808-119421.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-17T21:57:10.886586+00:00",
-  "quote_source": "priority",
-  "priority_line": 18,
+  "generated_at_utc": "2026-09-17T21:58:08.119421+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20260917-215710-886586.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
