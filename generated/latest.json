@@ -1,17 +1,15 @@
 {
-  "quote": "🔥 तुमने हमें कमजोर समझा, यही तुम्हारी सबसे बड़ी गलती थी।",
+  "quote": "वे हमें उस इंसान में बदलने आती हैं जो मंज़िल के लायक हो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-08.jpg",
+  "template": "template-09.jpg",
   "image_source": "template",
-  "filename": "quote-20260917-083105-099539.jpg",
+  "filename": "quote-20260917-215710-886586.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-17T08:31:05.099539+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-17T21:57:10.886586+00:00",
+  "quote_source": "priority",
+  "priority_line": 18,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 7,
-  "next_template_index": 8,
-  "reel_filename": "reel-20260917-083105-099539.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 8,
+  "next_template_index": 9
 }
