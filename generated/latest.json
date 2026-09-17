@@ -1,17 +1,15 @@
 {
-  "quote": "मुश्किलें रास्ता रोकने नहीं आतीं,",
+  "quote": "🥀 रिश्ते निभाते-निभाते समझ आया, हर रिश्ता बराबर नहीं होता।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260917-082805-036613.jpg",
+  "filename": "quote-20260917-082923-202815.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-17T08:28:05.036613+00:00",
-  "quote_source": "priority",
-  "priority_line": 18,
+  "generated_at_utc": "2026-09-17T08:29:23.202815+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260917-082805-036613.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
