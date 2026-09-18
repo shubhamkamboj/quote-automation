@@ -1,17 +1,15 @@
 {
-  "quote": "💔 दिल टूटने की आवाज नहीं होती, मगर दर्द बहुत होता है।",
+  "quote": "अकेले चलने से मत डरना,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260917-220110-521439.jpg",
+  "filename": "quote-20260918-080240-136068.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-17T22:01:10.521439+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-18T08:02:40.136068+00:00",
+  "quote_source": "priority",
+  "priority_line": 19,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260917-220110-521439.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
