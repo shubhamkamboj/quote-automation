@@ -1,17 +1,15 @@
 {
-  "quote": "🖤 हम पराए नहीं थे, बस किसी के लिए जरूरी नहीं थे।",
+  "quote": "भीड़ हमेशा सही दिशा में नहीं चलती।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20260918-080528-971567.jpg",
+  "filename": "quote-20260918-212807-347040.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-18T08:05:28.971567+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-18T21:28:07.347040+00:00",
+  "quote_source": "priority",
+  "priority_line": 19,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20260918-080528-971567.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
