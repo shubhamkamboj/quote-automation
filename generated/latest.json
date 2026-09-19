@@ -1,17 +1,15 @@
 {
-  "quote": "🖤 हमसे नफरत करने वालों की कमी नहीं, क्योंकि हम हर किसी के हिसाब से नहीं चलते।",
+  "quote": "उसी दिन तुम्हें अपनी जिंदगी खूबसूरत लगने लगेगी।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-04.jpg",
+  "template": "template-05.jpg",
   "image_source": "template",
-  "filename": "quote-20260919-075607-409982.jpg",
+  "filename": "quote-20260919-122010-433327.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-19T07:56:07.409982+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-19T12:20:10.433327+00:00",
+  "quote_source": "priority",
+  "priority_line": 20,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 3,
-  "next_template_index": 4,
-  "reel_filename": "reel-20260919-075607-409982.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 4,
+  "next_template_index": 5
 }
