@@ -1,17 +1,15 @@
 {
-  "quote": "उसी दिन तुम्हें अपनी जिंदगी खूबसूरत लगने लगेगी।",
+  "quote": "♟️ तुमने अपना खेल खेल लिया, अब मेरी बारी है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260919-122010-433327.jpg",
+  "filename": "quote-20260919-122111-457563.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-19T12:20:10.433327+00:00",
-  "quote_source": "priority",
-  "priority_line": 20,
+  "generated_at_utc": "2026-09-19T12:21:11.457563+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260919-122010-433327.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
