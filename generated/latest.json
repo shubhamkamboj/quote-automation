@@ -1,17 +1,15 @@
 {
-  "quote": "दूसरों की जिंदगी देखकर परेशान मत हो,",
+  "quote": "💔 कुछ अधूरी मोहब्बतें पूरी जिंदगी याद रहती हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20260919-212031-857563.jpg",
+  "filename": "quote-20260919-212128-399668.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-19T21:20:31.857563+00:00",
-  "quote_source": "priority",
-  "priority_line": 21,
+  "generated_at_utc": "2026-09-19T21:21:28.399668+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20260919-212031-857563.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
