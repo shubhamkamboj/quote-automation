@@ -1,17 +1,15 @@
 {
-  "quote": "जिस दिन तुमने तुलना करना छोड़ दिया,",
+  "quote": "💔 दिल लगाना आसान था, उसे संभालना मुश्किल निकला।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260919-075325-383312.jpg",
+  "filename": "quote-20260919-075420-905613.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-19T07:53:25.383312+00:00",
-  "quote_source": "priority",
-  "priority_line": 20,
+  "generated_at_utc": "2026-09-19T07:54:20.905613+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260919-075325-383312.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
