@@ -1,17 +1,15 @@
 {
-  "quote": "हर किसी की कहानी का एक ऐसा पन्ना होता है जो दुनिया नहीं देखती।",
+  "quote": "👑 इज्जत वहां मत मांगो, जहां तुम्हारी कद्र ही नहीं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20260920-082236-645846.jpg",
+  "filename": "quote-20260920-082336-928484.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-20T08:22:36.645846+00:00",
-  "quote_source": "priority",
-  "priority_line": 21,
+  "generated_at_utc": "2026-09-20T08:23:36.928484+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20260920-082236-645846.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
