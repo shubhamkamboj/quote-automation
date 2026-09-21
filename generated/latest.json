@@ -1,17 +1,15 @@
 {
-  "quote": "लेकिन माँ की दुआ, पिता का भरोसा और सच्चे रिश्ते नहीं खरीद सकता।",
+  "quote": "💪 मुश्किलें रास्ता रोकने नहीं, मजबूत बनाने आती हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260921-084036-529428.jpg",
+  "filename": "quote-20260921-084126-942251.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-21T08:40:36.529428+00:00",
-  "quote_source": "priority",
-  "priority_line": 22,
+  "generated_at_utc": "2026-09-21T08:41:26.942251+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260921-084036-529428.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
