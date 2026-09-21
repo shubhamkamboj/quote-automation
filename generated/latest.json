@@ -1,17 +1,15 @@
 {
-  "quote": "🤫 हमारी चुप्पी का मतलब हार नहीं, तैयारी है।",
+  "quote": "किसी की मजबूरी का मज़ाक मत बनाना,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-04.jpg",
+  "template": "template-05.jpg",
   "image_source": "template",
-  "filename": "quote-20260921-084431-059719.jpg",
+  "filename": "quote-20260921-222948-522008.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-21T08:44:31.059719+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-21T22:29:48.522008+00:00",
+  "quote_source": "priority",
+  "priority_line": 23,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 3,
-  "next_template_index": 4,
-  "reel_filename": "reel-20260921-084431-059719.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 4,
+  "next_template_index": 5
 }
