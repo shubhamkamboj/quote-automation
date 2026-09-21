@@ -1,17 +1,15 @@
 {
-  "quote": "किसी की मजबूरी का मज़ाक मत बनाना,",
+  "quote": "🖤 मैं अकेला जरूर हूं, लेकिन कमजोर नहीं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260921-222948-522008.jpg",
+  "filename": "quote-20260921-223034-868577.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-21T22:29:48.522008+00:00",
-  "quote_source": "priority",
-  "priority_line": 23,
+  "generated_at_utc": "2026-09-21T22:30:34.868577+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260921-222948-522008.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
