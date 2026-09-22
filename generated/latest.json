@@ -1,17 +1,15 @@
 {
-  "quote": "🧠 जिंदगी ने एक बात सिखाई—जो दिखता है, वो हमेशा सच नहीं होता।",
+  "quote": "वक़्त इंसान को वहीं खड़ा कर देता है जहाँ उसने कभी किसी और को देखा था।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-08.jpg",
+  "template": "template-09.jpg",
   "image_source": "template",
-  "filename": "quote-20260921-223252-523913.jpg",
+  "filename": "quote-20260922-081944-048005.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-21T22:32:52.523913+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-22T08:19:44.048005+00:00",
+  "quote_source": "priority",
+  "priority_line": 23,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 7,
-  "next_template_index": 8,
-  "reel_filename": "reel-20260921-223252-523913.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 8,
+  "next_template_index": 9
 }
