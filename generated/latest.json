@@ -1,17 +1,15 @@
 {
-  "quote": "बल्कि यह है कि गुस्से में भी वह अपनी इंसानियत नहीं खोता।",
+  "quote": "तुम्हें हर लड़ाई जीतनी जरूरी नहीं, कुछ लड़ाइयों से बस सीखकर आगे बढ़ना जरूरी है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-07.jpg",
+  "template": "template-08.jpg",
   "image_source": "template",
-  "filename": "quote-20260923-082230-502333.jpg",
+  "filename": "quote-20260923-082322-857818.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-23T08:22:30.502333+00:00",
-  "quote_source": "priority",
-  "priority_line": 24,
+  "generated_at_utc": "2026-09-23T08:23:22.857818+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 6,
-  "next_template_index": 7,
-  "reel_filename": "reel-20260923-082230-502333.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 7,
+  "next_template_index": 8
 }
