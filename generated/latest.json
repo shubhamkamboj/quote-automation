@@ -1,17 +1,15 @@
 {
-  "quote": "हर रिश्ता जिंदगी भर के लिए नहीं होता; कुछ रिश्ते हमें खुद से मिलाने आते हैं।",
+  "quote": "मुश्किल समय तुम्हारी जिंदगी का अंत नहीं, तुम्हारे पुराने रूप का अंत हो सकता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260924-081354-721561.jpg",
+  "filename": "quote-20260924-081453-823118.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-24T08:13:54.721561+00:00",
-  "quote_source": "priority",
-  "priority_line": 25,
+  "generated_at_utc": "2026-09-24T08:14:53.823118+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260924-081354-721561.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
