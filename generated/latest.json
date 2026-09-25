@@ -1,17 +1,15 @@
 {
-  "quote": "कृष्ण ने कहा कि कर्म तुम्हारे हाथ में है, इसलिए परिणाम की चिंता से ज्यादा अपने कर्म की गुणवत्ता पर ध्यान दो।",
+  "quote": "कभी-कभी इंसान इसलिए चुप रहता है क्योंकि उसे पता होता है कि सच बहुत कुछ तोड़ देगा।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20260924-220704-047964.jpg",
+  "filename": "quote-20260925-083640-081862.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-24T22:07:04.047964+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-25T08:36:40.081862+00:00",
+  "quote_source": "priority",
+  "priority_line": 26,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20260924-220704-047964.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
