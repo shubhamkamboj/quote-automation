@@ -1,17 +1,15 @@
 {
-  "quote": "कभी-कभी इंसान इसलिए चुप रहता है क्योंकि उसे पता होता है कि सच बहुत कुछ तोड़ देगा।",
+  "quote": "पांडवों के पास हर समय सुविधा नहीं थी, लेकिन उन्होंने कठिन समय को अपनी पहचान बनने नहीं दिया।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20260925-083640-081862.jpg",
+  "filename": "quote-20260925-083732-503955.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-25T08:36:40.081862+00:00",
-  "quote_source": "priority",
-  "priority_line": 26,
+  "generated_at_utc": "2026-09-25T08:37:32.503955+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20260925-083640-081862.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
