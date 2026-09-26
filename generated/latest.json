@@ -1,17 +1,15 @@
 {
-  "quote": "हर हार के बाद खुद को दोष मत देना,",
+  "quote": "अपने रिश्तों की बातें हर किसी से साझा मत करो, क्योंकि हर सुनने वाला तुम्हारा शुभचिंतक नहीं होता।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20260926-215409-764880.jpg",
+  "filename": "quote-20260926-215558-564872.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-26T21:54:09.764880+00:00",
-  "quote_source": "priority",
-  "priority_line": 28,
+  "generated_at_utc": "2026-09-26T21:55:58.564872+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20260926-215409-764880.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
