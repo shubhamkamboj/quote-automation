@@ -1,17 +1,15 @@
 {
-  "quote": "किसी की जिंदगी देखकर अपनी जिंदगी का फैसला मत करो, क्योंकि हर कहानी का संघर्ष अलग होता है।",
+  "quote": "क्योंकि किस्मत दरवाज़ा खोल सकती है, लेकिन अंदर मेहनत ही ले जाती है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20260925-220522-330096.jpg",
+  "filename": "quote-20260926-082342-290757.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-25T22:05:22.330096+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-09-26T08:23:42.290757+00:00",
+  "quote_source": "priority",
+  "priority_line": 27,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20260925-220522-330096.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
