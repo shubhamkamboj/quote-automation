@@ -1,17 +1,15 @@
 {
-  "quote": "बुरा समय भी एक शिक्षक है,",
+  "quote": "रामायण हमें बताती है कि एक व्यक्ति की मानसिकता पूरे परिवार के भविष्य को प्रभावित कर सकती है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20260928-234546-688398.jpg",
+  "filename": "quote-20260928-234724-319208.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-09-28T23:45:46.688398+00:00",
-  "quote_source": "priority",
-  "priority_line": 30,
+  "generated_at_utc": "2026-09-28T23:47:24.319208+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20260928-234546-688398.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
