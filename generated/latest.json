@@ -1,17 +1,15 @@
 {
-  "quote": "हर किसी को खुश करने की कोशिश मत करो,",
+  "quote": "जिंदगी छोटी नहीं है, हम उसे उन चीज़ों में बड़ा हिस्सा दे देते हैं जो हमारे लिए मायने ही नहीं रखतीं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20261001-230201-903628.jpg",
+  "filename": "quote-20261001-230257-449667.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-01T23:02:01.903628+00:00",
-  "quote_source": "priority",
-  "priority_line": 33,
+  "generated_at_utc": "2026-10-01T23:02:57.449667+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20261001-230201-903628.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
