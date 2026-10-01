@@ -1,17 +1,15 @@
 {
-  "quote": "जो रिश्ते सालों में बनते हैं, उन्हें कभी-कभी कुछ शब्द मिनटों में कमजोर कर देते हैं।",
+  "quote": "हर किसी को खुश करने की कोशिश मत करो,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-04.jpg",
+  "template": "template-05.jpg",
   "image_source": "template",
-  "filename": "quote-20261001-095453-843520.jpg",
+  "filename": "quote-20261001-230201-903628.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-01T09:54:53.843520+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-01T23:02:01.903628+00:00",
+  "quote_source": "priority",
+  "priority_line": 33,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 3,
-  "next_template_index": 4,
-  "reel_filename": "reel-20261001-095453-843520.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 4,
+  "next_template_index": 5
 }
