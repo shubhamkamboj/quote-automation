@@ -1,17 +1,15 @@
 {
-  "quote": "क्योंकि ऐसा करते-करते अक्सर इंसान खुद से ही दूर हो जाता है।",
+  "quote": "कभी-कभी जिंदगी का सबसे बड़ा जवाब, किसी सवाल का जवाब न देना होता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20261002-092821-938484.jpg",
+  "filename": "quote-20261002-092949-019369.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-02T09:28:21.938484+00:00",
-  "quote_source": "priority",
-  "priority_line": 33,
+  "generated_at_utc": "2026-10-02T09:29:49.019369+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20261002-092821-938484.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
