@@ -1,17 +1,15 @@
 {
-  "quote": "लोग तुम्हारी कीमत तब समझते हैं, जब उन्हें तुम्हारी कमी महसूस होती है।",
+  "quote": "जिस घर में सम्मान बचा रहता है,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20261003-090027-648508.jpg",
+  "filename": "quote-20261003-220132-510051.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-03T09:00:27.648508+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-03T22:01:32.510051+00:00",
+  "quote_source": "priority",
+  "priority_line": 35,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20261003-090027-648508.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
