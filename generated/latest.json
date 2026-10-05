@@ -1,17 +1,15 @@
 {
-  "quote": "क्योंकि इंसान भूल सकता है, लेकिन कर्म अपना हिसाब कभी नहीं भूलते।",
+  "quote": "परिवार में मतभेद होना सामान्य है, लेकिन किसी तीसरे व्यक्ति को उन्हें हथियार बना लेना विनाशकारी हो सकता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20261005-100741-259650.jpg",
+  "filename": "quote-20261005-100846-324201.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-05T10:07:41.259650+00:00",
-  "quote_source": "priority",
-  "priority_line": 36,
+  "generated_at_utc": "2026-10-05T10:08:46.324201+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20261005-100741-259650.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
