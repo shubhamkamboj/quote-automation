@@ -1,17 +1,15 @@
 {
-  "quote": "इसलिए जब मिल जाए तो उसे अहंकार से नहीं, प्यार से संभालना।",
+  "quote": "कुछ सपनों को पूरा होने में समय लगता है, इसलिए धैर्य को अपनी यात्रा का हिस्सा बना लो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20261006-095144-763639.jpg",
+  "filename": "quote-20261006-095244-265276.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-06T09:51:44.763639+00:00",
-  "quote_source": "priority",
-  "priority_line": 37,
+  "generated_at_utc": "2026-10-06T09:52:44.265276+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20261006-095144-763639.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
