@@ -1,17 +1,15 @@
 {
-  "quote": "जो तुम्हारे बुरे समय में तुम्हारे साथ खड़ा रहा,",
+  "quote": "हर किसी की जिंदगी बाहर से खूबसूरत दिख सकती है, लेकिन असली कहानी उसके संघर्षों में छिपी होती है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20261007-234824-721099.jpg",
+  "filename": "quote-20261007-235015-097493.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-07T23:48:24.721099+00:00",
-  "quote_source": "priority",
-  "priority_line": 39,
+  "generated_at_utc": "2026-10-07T23:50:15.097493+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20261007-234824-721099.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
