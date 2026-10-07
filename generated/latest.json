@@ -1,17 +1,15 @@
 {
-  "quote": "लेकिन जो मिला है उसकी कदर करना सीखो, सुकून वहीं से शुरू होता है।",
+  "quote": "जो व्यक्ति तुम्हें अपनों से अलग करता है, वह चाहे कितनी भी मीठी बातें करे, उसके प्रभाव को समझना जरूरी है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20261007-095815-495473.jpg",
+  "filename": "quote-20261007-095933-373527.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-07T09:58:15.495473+00:00",
-  "quote_source": "priority",
-  "priority_line": 38,
+  "generated_at_utc": "2026-10-07T09:59:33.373527+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20261007-095815-495473.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
