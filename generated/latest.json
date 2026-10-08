@@ -1,17 +1,15 @@
 {
-  "quote": "सच्चा रिश्ता वह नहीं जो हर दिन बात करे,",
+  "quote": "अपने सपनों को इतना मजबूत बनाओ कि रास्ते की मुश्किलें छोटी लगने लगें।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20261008-234120-111696.jpg",
+  "filename": "quote-20261008-234231-840553.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-08T23:41:20.111696+00:00",
-  "quote_source": "priority",
-  "priority_line": 40,
+  "generated_at_utc": "2026-10-08T23:42:31.840553+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20261008-234120-111696.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
