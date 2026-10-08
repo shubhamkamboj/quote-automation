@@ -1,17 +1,15 @@
 {
-  "quote": "उसे अपने अच्छे समय में कभी पीछे मत छोड़ना।",
+  "quote": "सफलता का सबसे शांत रूप है जब तुम्हें किसी को बताने की जरूरत नहीं पड़ती कि तुम बदल चुके हो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-07.jpg",
+  "template": "template-08.jpg",
   "image_source": "template",
-  "filename": "quote-20261008-101023-059513.jpg",
+  "filename": "quote-20261008-101118-261088.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-08T10:10:23.059513+00:00",
-  "quote_source": "priority",
-  "priority_line": 39,
+  "generated_at_utc": "2026-10-08T10:11:18.261088+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 6,
-  "next_template_index": 7,
-  "reel_filename": "reel-20261008-101023-059513.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 7,
+  "next_template_index": 8
 }
