@@ -1,17 +1,15 @@
 {
-  "quote": "सच्चा रिश्ता वह है जो दूरी में भी दिल से दूर न हो।",
+  "quote": "हनुमान ने समुद्र की दूरी नहीं देखी, उन्होंने अपने उद्देश्य को देखा और उड़ान भर दी।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20261009-101200-292493.jpg",
+  "filename": "quote-20261009-101257-697108.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-09T10:12:00.292493+00:00",
-  "quote_source": "priority",
-  "priority_line": 40,
+  "generated_at_utc": "2026-10-09T10:12:57.697108+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20261009-101200-292493.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
