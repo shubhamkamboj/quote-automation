@@ -1,17 +1,15 @@
 {
-  "quote": "किसी के जाने के बाद रोना आसान है,",
+  "quote": "जब तक तुम खुद को मौका नहीं दोगे, दुनिया तुम्हें मौका क्यों देगी।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20261009-230533-368441.jpg",
+  "filename": "quote-20261009-230622-317875.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-09T23:05:33.368441+00:00",
-  "quote_source": "priority",
-  "priority_line": 41,
+  "generated_at_utc": "2026-10-09T23:06:22.317875+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20261009-230533-368441.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
