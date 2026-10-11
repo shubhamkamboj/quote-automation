@@ -1,17 +1,15 @@
 {
-  "quote": "कठिन समय को दुश्मन मत समझो, शायद वही तुम्हें उस इंसान में बदल रहा है जिसकी तुम्हारे भविष्य को जरूरत है।",
+  "quote": "लेकिन तुम्हें अपनी गलतियों से सीखकर आगे बढ़ना है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20261010-222044-759920.jpg",
+  "filename": "quote-20261011-094548-429015.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-10T22:20:44.759920+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-11T09:45:48.429015+00:00",
+  "quote_source": "priority",
+  "priority_line": 42,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20261010-222044-759920.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
