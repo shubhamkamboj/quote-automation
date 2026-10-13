@@ -1,17 +1,15 @@
 {
-  "quote": "रामायण में वनवास सजा था, लेकिन उसी वनवास ने राम के चरित्र को दुनिया के सामने उजागर किया।",
+  "quote": "ऊँचाई वही है जहाँ पहुँचकर भी इंसान दूसरों को सम्मान दे।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20261013-011219-545697.jpg",
+  "filename": "quote-20261013-101444-464658.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-13T01:12:19.545697+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-13T10:14:44.464658+00:00",
+  "quote_source": "priority",
+  "priority_line": 44,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20261013-011219-545697.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
