@@ -1,17 +1,15 @@
 {
-  "quote": "किसी को नीचा दिखाकर खुद ऊँचा होने की कोशिश मत करो,",
+  "quote": "दूसरों की तालियों से मिली खुशी थोड़ी देर रहती है, लेकिन खुद पर गर्व की भावना लंबे समय तक साथ रहती है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20261013-010855-496303.jpg",
+  "filename": "quote-20261013-010956-339796.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-13T01:08:55.496303+00:00",
-  "quote_source": "priority",
-  "priority_line": 44,
+  "generated_at_utc": "2026-10-13T01:09:56.339796+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20261013-010855-496303.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
