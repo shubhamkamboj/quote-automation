@@ -1,17 +1,15 @@
 {
-  "quote": "हनुमान को अपनी शक्ति याद दिलाई गई, क्योंकि कई बार इंसान के भीतर सामर्थ्य होता है लेकिन उसे अपने ऊपर विश्वास नहीं होता।",
+  "quote": "किसी को नीचा दिखाकर खुद ऊँचा होने की कोशिश मत करो,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20261012-102704-212916.jpg",
+  "filename": "quote-20261013-010855-496303.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-12T10:27:04.212916+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-13T01:08:55.496303+00:00",
+  "quote_source": "priority",
+  "priority_line": 44,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20261012-102704-212916.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
