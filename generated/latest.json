@@ -1,17 +1,15 @@
 {
-  "quote": "समय सबसे ईमानदार शिक्षक है, क्योंकि वह बिना बोले सब कुछ सिखा देता है।",
+  "quote": "माँ-बाप की मौजूदगी को कभी सामान्य मत समझना,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-08.jpg",
+  "template": "template-09.jpg",
   "image_source": "template",
-  "filename": "quote-20261014-083153-080255.jpg",
+  "filename": "quote-20261014-220721-695941.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-14T08:31:53.080255+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-14T22:07:21.695941+00:00",
+  "quote_source": "priority",
+  "priority_line": 46,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 7,
-  "next_template_index": 8,
-  "reel_filename": "reel-20261014-083153-080255.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 8,
+  "next_template_index": 9
 }
