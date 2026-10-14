@@ -1,17 +1,15 @@
 {
-  "quote": "इसलिए किसी के चेहरे को देखकर उसकी जिंदगी का फैसला मत करना।",
+  "quote": "तुम्हारी कहानी अभी खत्म नहीं हुई है, इसलिए किसी मुश्किल अध्याय को पूरी किताब मत समझो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20261014-082855-886296.jpg",
+  "filename": "quote-20261014-083011-075681.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-14T08:28:55.886296+00:00",
-  "quote_source": "priority",
-  "priority_line": 45,
+  "generated_at_utc": "2026-10-14T08:30:11.075681+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20261014-082855-886296.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
