@@ -1,17 +1,15 @@
 {
-  "quote": "जिस तरह पांडवों ने लंबे संघर्ष के बाद अपना स्थान पाया, उसी तरह तुम्हारी आज की मेहनत कल तुम्हारी पहचान बन सकती है।",
+  "quote": "जो बात दिल को तोड़ती है,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20261015-080649-251793.jpg",
+  "filename": "quote-20261015-215952-251971.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-15T08:06:49.251793+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-15T21:59:52.251971+00:00",
+  "quote_source": "priority",
+  "priority_line": 47,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20261015-080649-251793.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
