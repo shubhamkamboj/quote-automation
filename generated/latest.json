@@ -1,17 +1,15 @@
 {
-  "quote": "रावण के पास ज्ञान बहुत था, लेकिन अहंकार ने उसके ज्ञान को उसकी कमजोरी बना दिया।",
+  "quote": "उनका होना जिंदगी की सबसे बड़ी दौलतों में से एक है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20261014-221059-722196.jpg",
+  "filename": "quote-20261015-080411-458448.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-14T22:10:59.722196+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-15T08:04:11.458448+00:00",
+  "quote_source": "priority",
+  "priority_line": 46,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20261014-221059-722196.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
