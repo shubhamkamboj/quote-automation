@@ -1,17 +1,15 @@
 {
-  "quote": "कभी-कभी वही बात इंसान को जिंदगी का सबसे बड़ा सच सिखाती है।",
+  "quote": "कुछ मंज़िलें देर से मिलती हैं, लेकिन जब मिलती हैं तो इंतज़ार का मतलब समझ आता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20261016-075808-650892.jpg",
+  "filename": "quote-20261016-075910-522797.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-16T07:58:08.650892+00:00",
-  "quote_source": "priority",
-  "priority_line": 47,
+  "generated_at_utc": "2026-10-16T07:59:10.522797+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20261016-075808-650892.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
