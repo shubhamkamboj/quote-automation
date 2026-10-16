@@ -1,17 +1,15 @@
 {
-  "quote": "परिवार को बचाने का पहला कदम किसी एक को दोष देना नहीं, बल्कि सच और गलतफहमी के बीच अंतर करना है।",
+  "quote": "कभी-कभी वही बात इंसान को जिंदगी का सबसे बड़ा सच सिखाती है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20261015-220237-508546.jpg",
+  "filename": "quote-20261016-075808-650892.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-15T22:02:37.508546+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-16T07:58:08.650892+00:00",
+  "quote_source": "priority",
+  "priority_line": 47,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20261015-220237-508546.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
