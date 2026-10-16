@@ -1,17 +1,15 @@
 {
-  "quote": "अगर तुम्हें अपनी मंज़िल साफ दिखाई नहीं दे रही, तो बस अगला कदम सही उठाओ।",
+  "quote": "जिस रास्ते पर कोई साथ नहीं चल रहा, जरूरी नहीं कि वह रास्ता गलत हो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20261016-215907-501508.jpg",
+  "filename": "quote-20261016-215958-999957.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-16T21:59:07.501508+00:00",
+  "generated_at_utc": "2026-10-16T21:59:58.999957+00:00",
   "quote_source": "fallback",
   "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20261016-215907-501508.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
