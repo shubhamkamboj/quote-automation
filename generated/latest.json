@@ -1,17 +1,15 @@
 {
-  "quote": "कुछ जवाब समय देता है, कुछ अनुभव और कुछ जवाब तुम्हें खुद बनना पड़ता है।",
+  "quote": "एक बार अपने अंदर झाँक लेना; शायद सबसे बड़ा सुधार वहीं बाकी हो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20261017-073949-914769.jpg",
+  "filename": "quote-20261017-120136-105150.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-17T07:39:49.914769+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-17T12:01:36.105150+00:00",
+  "quote_source": "priority",
+  "priority_line": 49,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20261017-073949-914769.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
