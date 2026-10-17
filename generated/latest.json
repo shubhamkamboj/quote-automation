@@ -1,17 +1,15 @@
 {
-  "quote": "इंसान की औकात उसके पास कितनी दौलत है इससे नहीं,",
+  "quote": "जिस दिन तुम्हें अपनी शांति की कीमत समझ आ गई, उस दिन हर बहस बेकार लगने लगेगी।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20261017-211841-707022.jpg",
+  "filename": "quote-20261017-211927-181470.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-17T21:18:41.707022+00:00",
-  "quote_source": "priority",
-  "priority_line": 50,
+  "generated_at_utc": "2026-10-17T21:19:27.181470+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20261017-211841-707022.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
