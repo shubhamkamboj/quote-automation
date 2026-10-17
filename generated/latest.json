@@ -1,17 +1,15 @@
 {
-  "quote": "दूसरों की कमियाँ गिनने से पहले,",
+  "quote": "शूर्पणखा की कहानी सिर्फ एक घटना नहीं, बल्कि यह भी याद दिलाती है कि व्यक्तिगत इच्छा के दूरगामी परिणाम हो सकते हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20261017-073548-209725.jpg",
+  "filename": "quote-20261017-073707-117930.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-17T07:35:48.209725+00:00",
-  "quote_source": "priority",
-  "priority_line": 49,
+  "generated_at_utc": "2026-10-17T07:37:07.117930+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20261017-073548-209725.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
