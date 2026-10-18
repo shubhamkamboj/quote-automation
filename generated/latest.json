@@ -1,17 +1,15 @@
 {
-  "quote": "कल वही समय तुम्हारी सबसे मजबूत कहानी बनेगा।",
+  "quote": "हर बात जो कोई अपना कहे, जरूरी नहीं कि वह तुम्हारे हित में ही कही गई हो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20261018-211919-332383.jpg",
+  "filename": "quote-20261018-212021-093149.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-18T21:19:19.332383+00:00",
-  "quote_source": "priority",
-  "priority_line": 51,
+  "generated_at_utc": "2026-10-18T21:20:21.093149+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20261018-211919-332383.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
