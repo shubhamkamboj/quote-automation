@@ -1,17 +1,15 @@
 {
-  "quote": "जो समय आज तुम्हें दर्द दे रहा है,",
+  "quote": "महाभारत बताती है कि परिवार, संबंध और भावनाएं महत्वपूर्ण हैं, लेकिन गलत के सामने विवेक खो देना भारी पड़ सकता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-09.jpg",
+  "template": "template-10.jpg",
   "image_source": "template",
-  "filename": "quote-20261018-122940-005183.jpg",
+  "filename": "quote-20261018-123029-767315.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-18T12:29:40.005183+00:00",
-  "quote_source": "priority",
-  "priority_line": 51,
+  "generated_at_utc": "2026-10-18T12:30:29.767315+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 8,
-  "next_template_index": 9,
-  "reel_filename": "reel-20261018-122940-005183.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 9,
+  "next_template_index": 0
 }
