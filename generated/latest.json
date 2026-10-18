@@ -1,17 +1,15 @@
 {
-  "quote": "अपने जीवन का कृष्ण खुद बनो, अपने मन के अर्जुन को सही दिशा दो और अपने कर्म के गांडीव को कभी मत छोड़ो।",
+  "quote": "जो समय आज तुम्हें दर्द दे रहा है,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-08.jpg",
+  "template": "template-09.jpg",
   "image_source": "template",
-  "filename": "quote-20261018-075341-947344.jpg",
+  "filename": "quote-20261018-122940-005183.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-18T07:53:41.947344+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-18T12:29:40.005183+00:00",
+  "quote_source": "priority",
+  "priority_line": 51,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 7,
-  "next_template_index": 8,
-  "reel_filename": "reel-20261018-075341-947344.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 8,
+  "next_template_index": 9
 }
