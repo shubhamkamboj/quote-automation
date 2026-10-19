@@ -1,17 +1,15 @@
 {
-  "quote": "कभी अपने हालात को देखकर मत तय करो कि तुम्हारा भविष्य कैसा होगा।",
+  "quote": "हर किसी को अपनी जिंदगी का राज़ मत बताना,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-06.jpg",
+  "template": "template-07.jpg",
   "image_source": "template",
-  "filename": "quote-20261018-212216-657109.jpg",
+  "filename": "quote-20261019-083508-648915.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-18T21:22:16.657109+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-19T08:35:08.648915+00:00",
+  "quote_source": "priority",
+  "priority_line": 52,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 5,
-  "next_template_index": 6,
-  "reel_filename": "reel-20261018-212216-657109.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 6,
+  "next_template_index": 7
 }
