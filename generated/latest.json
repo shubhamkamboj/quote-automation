@@ -1,17 +1,15 @@
 {
-  "quote": "हर कठिन परिस्थिति पूछती है कि तुम टूटोगे या अपने भीतर की ताकत को पहचानोगे।",
+  "quote": "कुछ लोग सलाह नहीं, सिर्फ मौका ढूँढते हैं।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20261019-083752-952325.jpg",
+  "filename": "quote-20261019-224955-243006.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-19T08:37:52.952325+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-19T22:49:55.243006+00:00",
+  "quote_source": "priority",
+  "priority_line": 52,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20261019-083752-952325.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
