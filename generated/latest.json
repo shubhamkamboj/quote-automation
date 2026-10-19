@@ -1,17 +1,15 @@
 {
-  "quote": "हर किसी को अपनी जिंदगी का राज़ मत बताना,",
+  "quote": "तुम्हारी असली ताकत तब दिखाई देती है, जब तुम्हारे पास हार मानने के हजार कारण हों।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-07.jpg",
+  "template": "template-08.jpg",
   "image_source": "template",
-  "filename": "quote-20261019-083508-648915.jpg",
+  "filename": "quote-20261019-083621-698027.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-19T08:35:08.648915+00:00",
-  "quote_source": "priority",
-  "priority_line": 52,
+  "generated_at_utc": "2026-10-19T08:36:21.698027+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 6,
-  "next_template_index": 7,
-  "reel_filename": "reel-20261019-083508-648915.mp4",
-  "audio_track": "calm_evening.mp3"
+  "template_rotation_index": 7,
+  "next_template_index": 8
 }
