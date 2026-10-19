@@ -1,17 +1,15 @@
 {
-  "quote": "कुछ लोग सलाह नहीं, सिर्फ मौका ढूँढते हैं।",
+  "quote": "जब जिंदगी तुम्हें अकेला महसूस कराए, याद रखना कि हनुमान ने भी अपनी शक्ति पहचानने से पहले एक लंबी छलांग के सामने खुद को अकेला पाया था।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-01.jpg",
+  "template": "template-02.jpg",
   "image_source": "template",
-  "filename": "quote-20261019-224955-243006.jpg",
+  "filename": "quote-20261019-225054-192467.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-19T22:49:55.243006+00:00",
-  "quote_source": "priority",
-  "priority_line": 52,
+  "generated_at_utc": "2026-10-19T22:50:54.192467+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 0,
-  "next_template_index": 1,
-  "reel_filename": "reel-20261019-224955-243006.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 1,
+  "next_template_index": 2
 }
