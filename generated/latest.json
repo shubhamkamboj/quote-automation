@@ -1,17 +1,15 @@
 {
-  "quote": "जिंदगी में सबसे महंगी चीज समय है, क्योंकि इसे कमाया नहीं जा सकता, केवल इस्तेमाल किया जा सकता है।",
+  "quote": "रिश्ते तब खूबसूरत होते हैं,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-02.jpg",
+  "template": "template-03.jpg",
   "image_source": "template",
-  "filename": "quote-20261020-221247-767482.jpg",
+  "filename": "quote-20261021-082114-391268.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-20T22:12:47.767482+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-21T08:21:14.391268+00:00",
+  "quote_source": "priority",
+  "priority_line": 54,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 1,
-  "next_template_index": 2,
-  "reel_filename": "reel-20261020-221247-767482.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 2,
+  "next_template_index": 3
 }
