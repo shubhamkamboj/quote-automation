@@ -1,17 +1,15 @@
 {
-  "quote": "लेकिन अगर मेहनत सच्ची हो तो मंज़िल से मुलाकात जरूर होती है।",
+  "quote": "वक्त किसी को नहीं बदलता, वक्त बस इंसान का असली रूप सामने लाता है।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-05.jpg",
+  "template": "template-06.jpg",
   "image_source": "template",
-  "filename": "quote-20261022-224735-893328.jpg",
+  "filename": "quote-20261022-224856-805487.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-22T22:47:35.893328+00:00",
-  "quote_source": "priority",
-  "priority_line": 55,
+  "generated_at_utc": "2026-10-22T22:48:56.805487+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 4,
-  "next_template_index": 5,
-  "reel_filename": "reel-20261022-224735-893328.mp4",
-  "audio_track": "warm_morning.mp3"
+  "template_rotation_index": 5,
+  "next_template_index": 6
 }
