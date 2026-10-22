@@ -1,17 +1,15 @@
 {
-  "quote": "हनुमान की उड़ान हमें याद दिलाती है कि कई सीमाएं वास्तविक नहीं होतीं, वे सिर्फ हमारे मन में बनी होती हैं।",
+  "quote": "जिंदगी में देर हो सकती है,",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-10.jpg",
+  "template": "template-01.jpg",
   "image_source": "template",
-  "filename": "quote-20261021-221435-896007.jpg",
+  "filename": "quote-20261022-082735-896035.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-21T22:14:35.896007+00:00",
-  "quote_source": "fallback",
-  "priority_line": null,
+  "generated_at_utc": "2026-10-22T08:27:35.896035+00:00",
+  "quote_source": "priority",
+  "priority_line": 55,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 9,
-  "next_template_index": 0,
-  "reel_filename": "reel-20261021-221435-896007.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 0,
+  "next_template_index": 1
 }
