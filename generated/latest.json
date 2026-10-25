@@ -1,17 +1,15 @@
 {
-  "quote": "किसी के दिल से खेलना आसान है,",
+  "quote": "जो व्यक्ति तुम्हें किसी अपने से दूर करने की कोशिश करे, उसकी बातों को भावनाओं से नहीं, तथ्यों से परखो।",
   "hashtags": "#HindiQuotes #LifeQuotes #Zindagi #Motivation #PositiveVibes",
-  "template": "template-03.jpg",
+  "template": "template-04.jpg",
   "image_source": "template",
-  "filename": "quote-20261024-212616-866575.jpg",
+  "filename": "quote-20261025-081128-843330.jpg",
   "latest_filename": "latest.jpg",
-  "generated_at_utc": "2026-10-24T21:26:16.866575+00:00",
-  "quote_source": "priority",
-  "priority_line": 56,
+  "generated_at_utc": "2026-10-25T08:11:28.843330+00:00",
+  "quote_source": "fallback",
+  "priority_line": null,
   "highlighted_words": [],
   "template_count": 10,
-  "template_rotation_index": 2,
-  "next_template_index": 3,
-  "reel_filename": "reel-20261024-212616-866575.mp4",
-  "audio_track": "soft_piano.mp3"
+  "template_rotation_index": 3,
+  "next_template_index": 4
 }
