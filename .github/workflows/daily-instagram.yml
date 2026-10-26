@@ -1,10 +1,10 @@
 name: Daily Hindi Quote
 
-on:
-  schedule:
-    - cron: "30 0,8,13 * * *"
-      timezone: "Asia/Kolkata"
-  workflow_dispatch:
+#on:
+  #schedule:
+    #- cron: "30 0,8,13 * * *"
+      #timezone: "Asia/Kolkata"
+  #workflow_dispatch:
 
 permissions:
   contents: write
